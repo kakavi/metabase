@@ -71,7 +71,11 @@
                                :logoHeader   true}
                               (random-quote-context)))]
     (email/send-message!
+<<<<<<< HEAD
+      :subject      (str "You're invited to join " company "")
+=======
       :subject      (str "You're invited to join " company "'s Kenga Analytics")
+>>>>>>> ee3d0af5e4369ce5d411894a0807a327a7bbcb16
       :recipients   [(:email invited)]
       :message-type :html
       :message      message-body)))
