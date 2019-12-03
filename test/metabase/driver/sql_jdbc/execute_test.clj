@@ -4,14 +4,11 @@
             [clojure.string :as str]
             [expectations :refer [expect]]
             [metabase
-             [driver :as driver]
              [query-processor :as qp]
              [util :as u]]
             [metabase.driver.sql-jdbc-test :as sql-jdbc-test]
             [metabase.driver.sql-jdbc.execute :as sql-jdbc.execute]
-            [metabase.query-processor
-             [test-util :as qp.tu]
-             [timezone :as qp.timezone]]
+            [metabase.query-processor.test-util :as qp.tu]
             [metabase.test
              [data :as data]
              [util :as tu]]
@@ -43,7 +40,7 @@
   `(do-with-max-rows (fn [] ~@body)))
 
 ;; We should be setting statement max rows based on appropriate limits when running queries (Snowflake runs tests with
-(datasets/expect-with-drivers (sql-jdbc-test/sql-jdbc-drivers)
+(datasets/expect-with-drivers @sql-jdbc-test/sql-jdbc-drivers
   {:max-rows 10}
   (with-max-rows
     (qp/process-query
@@ -52,7 +49,7 @@
        :query    {:source-table (data/id :venues)
                   :limit        10}})))
 
-(datasets/expect-with-drivers (sql-jdbc-test/sql-jdbc-drivers)
+(datasets/expect-with-drivers @sql-jdbc-test/sql-jdbc-drivers
   {:max-rows 5}
   (with-max-rows
     (qp/process-query
@@ -63,7 +60,7 @@
        :constraints {:max-results 5}})))
 
 
-(datasets/expect-with-drivers (sql-jdbc-test/sql-jdbc-drivers)
+(datasets/expect-with-drivers @sql-jdbc-test/sql-jdbc-drivers
   {:max-rows 15}
   (with-max-rows
     (qp/process-query
@@ -226,12 +223,11 @@
 
                   sql-jdbc.execute/set-timezone!
                   (let [orig @#'sql-jdbc.execute/set-timezone!]
-                    (fn [driver report-timezone connection]
+                    (fn [driver {:keys [report-timezone], :as settings} connection]
                       (deliver timezone report-timezone)
-                      (orig driver report-timezone connection)))]
+                      (orig driver settings connection)))]
       (qp.tu/with-everything-store
-        (driver/with-driver driver
-          (sql-jdbc.execute/execute-query driver query)))
+        (sql-jdbc.execute/execute-query driver query))
       {:ran-with-timezone? (u/deref-with-timeout ran-with-timezone? 1000)
        :timezone           (u/deref-with-timeout timezone 1000)})))
 
@@ -245,11 +241,9 @@
 
 (expect
   {:ran-with-timezone? true, :timezone "US/Pacific"}
-  (with-redefs [driver/supports?               (constantly true)
-                sql-jdbc.execute/set-timezone! (constantly nil)]
-    (qp.timezone/with-report-timezone-id "US/Pacific"
-      (ran-with-timezone?
-       :h2
-       {:database (data/id)
-        :type     :native
-        :native   {:query "SELECT * FROM VENUES LIMIT 1;"}}))))
+  (ran-with-timezone?
+   :h2
+   {:database (data/id)
+    :type     :native
+    :native   {:query "SELECT * FROM VENUES LIMIT 1;"}
+    :settings {:report-timezone "US/Pacific"}}))

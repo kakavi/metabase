@@ -178,7 +178,7 @@
         (fs/delete filename)
         (println (u/format-color 'red (trs "Output H2 database already exists: %s, removing.") filename))))
 
-    (println "Dumping from configured Metabase db to H2 file" h2-filename)
+    (println "Dumping from configured Kenga Analytics db to H2 file" h2-filename)
 
     (mdb/setup-db!* (get-target-db-conn h2-filename) true)
     (mdb/setup-db!)

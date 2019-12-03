@@ -1,8 +1,8 @@
 ## Sharing updates with pulses
 
-The Pulses feature in Metabase gives you the ability to automatically send regular updates to your teammates to help everyone keep track of changes to the metrics that matter to you most. You can deliver a pulse via email or [Slack](https://slack.com/), on the schedule of your choice.
+The Pulses feature in Kenga Analytics gives you the ability to automatically send regular updates to your teammates to help everyone keep track of changes to the metrics that matter to you most. You can deliver a pulse via email or [Slack](https://slack.com/), on the schedule of your choice.
 
-To create a new pulse, click the plus (+) button in the top-right of Metabase and select `New pulse`.
+To create a new pulse, click the plus (+) button in the top-right of Kenga Analytics and select `New pulse`.
 
 ### Name it
 
@@ -16,7 +16,7 @@ Before you can create a pulse, you’ll need to have some [saved questions](06-s
 
 ![Pick your data](images/pulses/03-pick-your-data.png)
 
-When you select a saved question, Metabase will show you a preview of how it’ll look in the pulse. Because of the space constraints of email and Slack, Metabase will automatically make some adjustments to the appearance of your saved question so that it looks great in the pulse. For example, in order to save space, pie charts will automatically be transformed into bar charts.
+When you select a saved question, Kenga Analytics will show you a preview of how it’ll look in the pulse. Because of the space constraints of email and Slack, Kenga Analytics will automatically make some adjustments to the appearance of your saved question so that it looks great in the pulse. For example, in order to save space, pie charts will automatically be transformed into bar charts.
 
 ![Behold! The metamorphosis.](images/pulses/04-transformation.png)
 
@@ -48,7 +48,7 @@ Currently, there are a few restrictions on what kinds of saved questions you can
 
 ### Choose how and when to deliver your data
 
-Each pulse you create can be delivered by email, Slack, or both. You can also set a different delivery schedule for email versus Slack. To deliver by email, just type in the Metabase user names, or email addresses you want to send the pulse to, separated by commas. Then, choose to either send it daily, weekly, or monthly, and the time at which you want it to be sent.
+Each pulse you create can be delivered by email, Slack, or both. You can also set a different delivery schedule for email versus Slack. To deliver by email, just type in the Kenga Analytics user names, or email addresses you want to send the pulse to, separated by commas. Then, choose to either send it daily, weekly, or monthly, and the time at which you want it to be sent.
 
 ![Setting the email schedule](images/pulses/05-email-schedule.png)
 
@@ -58,12 +58,12 @@ Once you’re done, just click `Create pulse` and you’ll see your new pulse in
 
 ### Editing or archiving a pulse
 
-If you ever need to make changes to a pulse, just navigate to the collection where it's saved and click on it, or search for it in the big search bar at the top of Metabase.
+If you ever need to make changes to a pulse, just navigate to the collection where it's saved and click on it, or search for it in the big search bar at the top of Kenga Analytics.
 
 If a pulse has outlived its usefulness you can archive it by clicking on the Archive button at the bottom of the pulse's detail page. Just remember: if you archive a pulse, no one will receive it anymore. You can unarchive a pulse just like you can with questions and dashboards by navigating to the archive from the top-right button while viewing any collection and clicking on the View Archive menu option, then clicking on the `Unarchive this` button on the far right next to the pulse.
 
 ---
 
-## Next: Connecting Metabase to Slack with Metabot 🤖
+## Next: Connecting Kenga Analytics to Slack with Metabot 🤖
 
 If your team uses Slack to communicate, you can [use Metabot](11-metabot.md) to display your saved questions directly within Slack whenever you want.

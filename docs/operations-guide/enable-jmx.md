@@ -1,5 +1,5 @@
 
-## Monitoring Your Metabase Instance
+## Monitoring Your Kenga Analytics Instance
 
 This guide assumes that you have the VisualVM tool installed
 locally. VisualVM is included with OpenJDK and the Oracle JDK and is
@@ -7,24 +7,24 @@ found in the `bin` directory of the JDK install. Some Linux
 distributions separate VisualVM from the JDK, in which case it's a
 separate `visualvm` package.
 
-### Connecting to a Local Metabase Instance
+### Connecting to a Local Kenga Analytics Instance
 
-If you have VisualVM installed on your Metabase server and are able to
+If you have VisualVM installed on your Kenga Analytics server and are able to
 run VisualVM there, this is the easiest path as there is no need to
 setup remote communication with your metabase instance. In this
-scenario, start Metabase like you would normally and separately start
-VisualVM. Metabase will be listed under are running your Metabase
+scenario, start Kenga Analytics like you would normally and separately start
+VisualVM. Kenga Analytics will be listed under are running your Kenga Analytics
 instance
 
 ![localprocess](images/LocalProcessVisualVM.png)
 
-### Connecting to a Remote Metabase Instance
+### Connecting to a Remote Kenga Analytics Instance
 
-Monitoring a remote Metabase instance (or a local instance running in
+Monitoring a remote Kenga Analytics instance (or a local instance running in
 a docker container) is probably more common, but requires a more
 setup. First we need to specify some system properties that lets the
 JVM know that we want to allow remote monitoring. Assuming we are
-running Metabase using `java -jar metabase.jar`, we'd need change the
+running Kenga Analytics using `java -jar metabase.jar`, we'd need change the
 invocation to the below command, which includes the properties:
 
 ```
@@ -47,7 +47,7 @@ period of time. Securing this connection is possible, see [the Oracle
 docs](https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html)
 for more information.
 
-Users running Metabase in a `docker` container will need to specify
+Users running Kenga Analytics in a `docker` container will need to specify
 the system properties detailed above and will also need to ensure the
 port is open. Docker allows specifying environment variables via a
 separate file that can be passed into the `docker run` invocation. You
@@ -92,7 +92,7 @@ Next open the new remote JMX process:
 
 ### Runtime Information
 
-Connecting to a running Metabase instance with VisualVM will make lots
+Connecting to a running Kenga Analytics instance with VisualVM will make lots
 of runtime information available. This guide won't go over all of
 possibilities of the tool, but will highlight a few important pieces.
 
@@ -105,8 +105,8 @@ heap dump from the "Monitor" tab:
 
 ![heapdump](images/HeapDump.png)
 
-Another useful picture of a running Metabase system is a Thread
-Dump. In cases when Metabase appears hung or extremely slow, a thread
+Another useful picture of a running Kenga Analytics system is a Thread
+Dump. In cases when Kenga Analytics appears hung or extremely slow, a thread
 dump will indicate what each thread is executing (or blocked on) for
 that specific point in time. Collect a thread dump via the "Threads"
 tab:

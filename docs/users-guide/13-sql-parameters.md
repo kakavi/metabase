@@ -1,6 +1,6 @@
 ## SQL Parameters
 
-Metabase has the flexible ability to allow variables in native (SQL) queries. This lets you dynamically replace values in your queries using filter widgets or through the query's URL.
+Kenga Analytics has the flexible ability to allow variables in native (SQL) queries. This lets you dynamically replace values in your queries using filter widgets or through the query's URL.
 
 ![Variables](images/sql-parameters/02-widget.png)
 
@@ -52,7 +52,7 @@ First, insert a variable tag in your SQL, like `{% raw %}{{my_var}}{% endraw %}`
 
 The field can also be a datetime one (which can be left as `No special type` in the Data Model).
 
-You'll then see a dropdown labeled `Widget`, which will let you choose the kind of filter widget you want on your question, which is especially useful for datetime fields (you can select `None` if you don't want a widget at all). **Note:** If you're not seeing the option to display a filter widget, make sure the mapped field is set to one of the above types, and then try manually syncing your database from the Databases section of the Admin Panel to force Metabase to scan and cache the field's values.
+You'll then see a dropdown labeled `Widget`, which will let you choose the kind of filter widget you want on your question, which is especially useful for datetime fields (you can select `None` if you don't want a widget at all). **Note:** If you're not seeing the option to display a filter widget, make sure the mapped field is set to one of the above types, and then try manually syncing your database from the Databases section of the Admin Panel to force Kenga Analytics to scan and cache the field's values.
 
 Filter widgets **can't** be displayed if the variable is mapped to a field marked as:
 
@@ -129,4 +129,4 @@ WHERE True
 
 ## Next: automated x-ray explorations
 
-Learn about how to easily and quickly see automatic explorations of your data with Metabase's powerful [x-ray feature](14-x-rays.md).
+Learn about how to easily and quickly see automatic explorations of your data with Kenga Analytics's powerful [x-ray feature](14-x-rays.md).

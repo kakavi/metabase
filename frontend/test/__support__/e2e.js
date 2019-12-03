@@ -52,7 +52,7 @@ let hasFinishedCreatingStore = false;
 let loginSession = null; // Stores the current login session
 let previousLoginSession = null;
 let simulateOfflineMode = false;
-let apiRequestCompletedCallbacks = [];
+let apiRequestCompletedCallback = null;
 let skippedApiRequests = [];
 
 // load files that are loaded at the top if app.js
@@ -68,7 +68,7 @@ const warnAboutCreatingStoreBeforeLogin = () => {
   }
 };
 /**
- * Login to the Metabase test instance with default credentials
+ * Login to the Kenga Analytics test instance with default credentials
  */
 export async function login({
   username = "bob@metabase.com",
@@ -460,23 +460,16 @@ export const waitForRequestToComplete = (
             ) || "No requests"}`,
         ),
       );
-      removeCallback();
     }, timeout);
-    const callback = (requestMethod, requestUrl) => {
+
+    apiRequestCompletedCallback = (requestMethod, requestUrl) => {
       if (requestMethod === method && urlRegex.test(requestUrl)) {
         clearTimeout(completionTimeoutId);
-        removeCallback();
         resolve();
       } else {
         skippedApiRequests.push(`${requestMethod} ${requestUrl}`);
       }
     };
-    const removeCallback = () => {
-      apiRequestCompletedCallbacks = apiRequestCompletedCallbacks.filter(
-        f => f !== callback,
-      );
-    };
-    apiRequestCompletedCallbacks.push(callback);
   });
 };
 
@@ -671,9 +664,8 @@ api._makeRequest = async (method, url, headers, requestBody, data, options) => {
       resultBody = JSON.parse(resultBody);
     } catch (e) {}
 
-    apiRequestCompletedCallbacks.forEach(f =>
-      setTimeout(() => f(method, url), 0),
-    );
+    apiRequestCompletedCallback &&
+      setTimeout(() => apiRequestCompletedCallback(method, url), 0);
 
     events.emit("request", { method, url });
 

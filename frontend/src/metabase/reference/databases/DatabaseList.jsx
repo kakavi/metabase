@@ -46,14 +46,14 @@ export default class DatabaseList extends Component {
 
     return (
       <div style={style} className="full">
-        <ReferenceHeader name={t`Our data`} />
+        <ReferenceHeader name={t`Databases and tables`} />
         <LoadingAndErrorWrapper
           loading={!loadingError && loading}
           error={loadingError}
         >
           {() =>
             Object.keys(entities).length > 0 ? (
-              <div className="wrapper">
+              <div className="wrapper wrapper--trim">
                 <List>
                   {Object.values(entities)
                     .filter(isQueryable)

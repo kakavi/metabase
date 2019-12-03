@@ -209,8 +209,8 @@
 
 
 (defmulti metabase-instance
-  "Return the Metabase object associated with this definition, if applicable. `context` should be the parent object (the
-  actual instance, *not* the definition) of the Metabase object to return (e.g., a pass a `Table` to a
+  "Return the Kenga Analytics object associated with this definition, if applicable. `context` should be the parent object (the
+  actual instance, *not* the definition) of the Kenga Analytics object to return (e.g., a pass a `Table` to a
   `FieldDefintion`). For a `DatabaseDefinition`, pass the driver keyword."
   {:arglists '([db-or-table-or-field-def context])}
   (fn [db-or-table-or-field-def context] (class db-or-table-or-field-def)))
@@ -290,7 +290,7 @@
   and add the appropriate data. This method should drop existing databases with the same name if applicable, unless
   the skip-drop-db? arg is true. This is to workaround a scenario where the postgres driver terminates the connection
   before dropping the DB and causes some tests to fail. (This refers to creating the actual *DBMS* database itself,
-  *not* a Metabase `Database` object.)
+  *not* a Kenga Analytics `Database` object.)
 
   Optional `options` as third param. Currently supported options include `skip-drop-db?`. If unspecified,
   `skip-drop-db?` should default to `false`."
@@ -357,8 +357,8 @@
     :source       :aggregation
     :field_ref    [:aggregation 0]})
 
-  ([driver aggregation-type {field-id :id, :keys [table_id]}]
-   {:pre [table_id]}
+  ([driver aggregation-type {field-id :id, :keys [base_type special_type table_id]}]
+   {:pre [base_type special_type]}
    (driver/with-driver driver
      (qp.store/with-store
        (qp.store/fetch-and-store-database! (db/select-one-field :db_id Table :id table_id))
@@ -420,22 +420,7 @@
                           (dataset-table-definition table))})))
 
 (defmacro defdataset
-  "Define a new dataset to test against. Definition should be of the format
-
-    [table-def+]
-
-  Where each table-def is of the format
-
-    [table-name [field-def+] [row+]]
-
-  e.g.
-
-  [[\"bird_species\"
-    [{:field-name \"name\", :base-type :type/Text}]
-    [[\"House Finch\"]
-     [\"Mourning Dove\"]]]]
-
-  Refer to the EDN definitions (e.g. `test-data.edn`) for more examples."
+  "Define a new dataset to test against."
   ([dataset-name definition]
    `(defdataset ~dataset-name nil ~definition))
 
@@ -642,7 +627,6 @@
   "Same as `db-test-env-var` but will throw an exception if the variable is `nil`."
   ([driver env-var]
    (db-test-env-var-or-throw driver env-var nil))
-
   ([driver env-var default]
    (or (db-test-env-var driver env-var default)
        (throw (Exception. (format "In order to test %s, you must specify the env var MB_%s_TEST_%s."

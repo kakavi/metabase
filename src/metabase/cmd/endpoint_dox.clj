@@ -8,9 +8,9 @@
             [metabase.plugins.classloader :as classloader]))
 
 (defn- dox
-  "Generate a Markdown string containing documentation for all Metabase API endpoints."
+  "Generate a Markdown string containing documentation for all Kenga Analytics API endpoints."
   []
-  (str "# API Documentation for Metabase "
+  (str "# API Documentation for Kenga Analytics "
        (config/mb-version-info :tag)
        "\n\n"
        (str/join "\n\n\n" (for [ns-symb     @u/metabase-namespace-symbols

@@ -1,6 +1,5 @@
 (ns metabase.query-processor.middleware.parameters.native.substitute-test
   (:require [expectations :refer [expect]]
-            [java-time :as t]
             [metabase.driver :as driver]
             [metabase.models.field :refer [Field]]
             [metabase.query-processor.middleware.parameters.native
@@ -90,12 +89,12 @@
   (i/map->FieldFilter
    {:field (Field (data/id :checkins :date))
     :value {:type  :date/single
-            :value (t/offset-date-time "2019-09-20T19:52:00.000-07:00")}}))
+            :value #inst "2019-09-20T19:52:00.000-07:00"}}))
 
 ;; field filter -- non-optional + present
 (expect
   ["select * from checkins where CAST(\"PUBLIC\".\"CHECKINS\".\"DATE\" AS date) = ?"
-   [(t/offset-date-time "2019-09-20T19:52:00.000-07:00")]]
+   [#inst "2019-09-20T19:52:00.000-07:00"]]
   (substitute
    ["select * from checkins where " (param "date")]
    {"date" (date-field-filter-value)}))
@@ -110,7 +109,7 @@
 ;; field filter -- optional + present
 (expect
   ["select * from checkins where CAST(\"PUBLIC\".\"CHECKINS\".\"DATE\" AS date) = ?"
-   [(t/offset-date-time "2019-09-20T19:52:00.000-07:00")]]
+   [#inst "2019-09-20T19:52:00.000-07:00"]]
   (substitute
    ["select * from checkins " (optional "where " (param "date"))]
    {"date" (date-field-filter-value)}))

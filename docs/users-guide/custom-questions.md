@@ -44,7 +44,7 @@ If you summarize and add a grouping you can then summarize _again_. You can also
 
 **Custom expressions**
 
-Custom expressions allow you to do simple arithmetic within or between aggregation functions. For example, you could do `Average(FieldX) + Sum(FieldY)` or `Max(FieldX - FieldY)`, where `FieldX` and `FieldY` are fields in the currently selected table. You can either use your cursor to select suggested functions and fields, or simply start typing and use the autocomplete. If you are a Metabase administrator, you can now also use custom aggregation expressions when creating defined common metrics in the Admin Panel.
+Custom expressions allow you to do simple arithmetic within or between aggregation functions. For example, you could do `Average(FieldX) + Sum(FieldY)` or `Max(FieldX - FieldY)`, where `FieldX` and `FieldY` are fields in the currently selected table. You can either use your cursor to select suggested functions and fields, or simply start typing and use the autocomplete. If you are a Kenga Analytics administrator, you can now also use custom aggregation expressions when creating defined common metrics in the Admin Panel.
 
 Currently, you can any of the basic aggregation functions (the same ones that appear in the pick-the-metric-you-want-to-see dropdown), and these basic mathematical operators: `+`, `-`, `*` (multiply), `/` (divide). You can also use parentheses to specify the order of operations.
 
@@ -58,7 +58,7 @@ Say we had a table of baseball games, each row representing a single game, and w
 
 ![Formula](images/custom-fields/filled-formula.png)
 
-The words in the quotes are the names of the fields in our table. If you start typing in this box, Metabase will show you fields in the current table that match what you’ve typed, and you can select from this list to autocomplete the field name.
+The words in the quotes are the names of the fields in our table. If you start typing in this box, Kenga Analytics will show you fields in the current table that match what you’ve typed, and you can select from this list to autocomplete the field name.
 
 Right now, you can only use the following math operators in your formulas: `+`, `–`, `*` (multiplication), and `/` (division). You can also use parentheses to clarify the order of operations.
 
@@ -96,9 +96,9 @@ After you click on the Join Data button to add a join step, you'll need to pick 
 
 ![Picking the data to join](./images/notebook/join-pick-data.png)
 
-Next, you'll need to pick the columns you want to join on. This means you pick a column from the first table, and a column from the second table, and the join will stitch rows together where the value from the first column is equal to the value in the second column. A very common example is to join on an ID column in each table, so if you happened to pick a table to join on where there is a foreign key relationship between the tables, Metabase will automatically pick those corresponding ID columns for you. At the end of your join step, there's a `Columns` button you can click to choose which columns you want to include from the joined data.
+Next, you'll need to pick the columns you want to join on. This means you pick a column from the first table, and a column from the second table, and the join will stitch rows together where the value from the first column is equal to the value in the second column. A very common example is to join on an ID column in each table, so if you happened to pick a table to join on where there is a foreign key relationship between the tables, Kenga Analytics will automatically pick those corresponding ID columns for you. At the end of your join step, there's a `Columns` button you can click to choose which columns you want to include from the joined data.
 
-By default, Metabase will do a left outer join, but you can click on the Venn diagram icon to change this to a different type of join. The options you'll see will differ based on the type of database you're using. Here are what the basic types of joins each do:
+By default, Kenga Analytics will do a left outer join, but you can click on the Venn diagram icon to change this to a different type of join. The options you'll see will differ based on the type of database you're using. Here are what the basic types of joins each do:
 
 - **Left outer join:** select all records from Table A, along with records from Table B that meet the join condition, if any.
 - **Right outer join:** select all records from Table B, along with records from Table B that meet the join condition, if any.
@@ -115,7 +115,7 @@ In many cases you might have tables A, B, and C, where A and B have a connection
 
 ### Viewing the SQL that powers your question
 
-Under the hood, all Metabase questions are SQL (gasp!). If you're curious to see the SQL that will get run when you ask your question, you can click the little console icon in the top-right of the notebook editor. In the modal that opens up, you'll also be given the option to start a new query in the SQL editor, using this generated SQL as a starting point. It's a nice little shortcut to have Metabase write some boilerplate SQL for you, but then allows you to tweak and customize the query.
+Under the hood, all Kenga Analytics questions are SQL (gasp!). If you're curious to see the SQL that will get run when you ask your question, you can click the little console icon in the top-right of the notebook editor. In the modal that opens up, you'll also be given the option to start a new query in the SQL editor, using this generated SQL as a starting point. It's a nice little shortcut to have Kenga Analytics write some boilerplate SQL for you, but then allows you to tweak and customize the query.
 
 ---
 

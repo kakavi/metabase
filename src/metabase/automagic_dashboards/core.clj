@@ -304,7 +304,7 @@
                     id                 [:field-id id]
                     :else              [:field-literal name base_type])]
     (cond
-      (isa? base_type :type/Temporal)
+      (isa? base_type :type/DateTime)
       [:datetime-field reference (or aggregation
                                      (optimal-datetime-resolution field))]
 
@@ -1142,7 +1142,7 @@
   [root [_ field-reference value]]
   (let [field      (field-reference->field root field-reference)
         field-name (field-name field)]
-    (if (or (isa? (:base_type field) :type/Temporal)
+    (if (or (isa? (:base_type field) :type/DateTime)
             (field/unix-timestamp? field))
       (tru "{0} is {1}" field-name (humanize-datetime value (:unit field)))
       (tru "{0} is {1}" field-name value))))

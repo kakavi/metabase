@@ -4,7 +4,7 @@
 
 Have you ever found yourself in a situation where it seems like you need to create nearly identical copies of the same dashboard, with just one different variable? Maybe you have an Earnings dashboard, but you want to see the data for each city your business is in, or maybe you have a KPI dashboard that you want to see broken out by month.
 
-Instead of creating duplicate dashboards, you can use Metabase’s dashboard filters feature to create simple toggles to change a variable for all the cards on a dashboard.
+Instead of creating duplicate dashboards, you can use Kenga Analytic’s dashboard filters feature to create simple toggles to change a variable for all the cards on a dashboard.
 
 ### Adding a new filter
 
@@ -16,7 +16,7 @@ You can choose from a number of filter types: Time, Location, ID, or Other Categ
 * **Time:** when picking a Time filter, you'll also be prompted to pick a specific type of filter widget: Month and Year, Quarter and Year, Single Date, Date Range, Relative Date, or All Options. "Single Date" and "Date Range" will provide a calendar widget, while the other options all provide slightly different dropdown interfaces for picking values. Choose "All Options" to get a widget that's just like the time filter in the graphical query builder.
 * **Location:** there are four types of Location filters to choose from: City, State, ZIP or Postal Code, and Country. These will all show up as input box widgets unless the field(s) you're filtering contain fewer than 40 distinct possible values, in which case the widget will be a dropdown.
 * **ID:** this filter provides a simple input box where you can type the ID of a user, order, etc.
-* **Other Categories:** this is a flexible filter type that will let you create either a dropdown or input box to filter on any category field in your cards. Whether the filter widget is displayed as a dropdown or an input box is dependent on the field(s) you pick to filter on: if there are fewer than 40 distinct possible values for that field, you'll see a dropdown; otherwise you'll see an input box. (A future version of Metabase will include type-ahead search suggestions for the input box widget.)
+* **Other Categories:** this is a flexible filter type that will let you create either a dropdown or input box to filter on any category field in your cards. Whether the filter widget is displayed as a dropdown or an input box is dependent on the field(s) you pick to filter on: if there are fewer than 40 distinct possible values for that field, you'll see a dropdown; otherwise you'll see an input box. (A future version of Kenga Analytics will include type-ahead search suggestions for the input box widget.)
 
 For our example, we'll select a Time filter, and then select the Month and Year option.
 
@@ -71,7 +71,7 @@ In both cases, you can pick one or multiple selections for your filter.
 
 ![Multi-select](images/dashboard-filters/multi-select.png)
 
-If Metabase somehow picked the wrong behavior for your field, admins can go to the Data Model section of the admin panel and click on the gear icon by the field in question to manually choose between a list, a search box, or just a plain input box.
+If Kenga Analytics somehow picked the wrong behavior for your field, admins can go to the Data Model section of the admin panel and click on the gear icon by the field in question to manually choose between a list, a search box, or just a plain input box.
 
 ![Search options](images/dashboard-filters/search-options.png)
 
@@ -85,7 +85,7 @@ Here are a few tips to get the most out of dashboard filters:
 
 - When you activate a dashboard filter, any card that isn’t wired up to the filter will fade out to indicate it’s not being filtered. If you activate more than one filter at the same time, cards will fade out unless they’re wired up to *every* active filter.
 - If you have a card with multiple series on it that you want to use with a dashboard filter, then just make sure to select a field to be filtered for each of the series in the card.
-- While connecting cards to a filter, you might see a warning message that says, `The values in this field don’t overlap with the values of any other fields you’ve chosen`. For example, maybe you selected the `Type of Pants` field for one card, but the `Types of Boats` field for another card; if you’re using those fields for the same filter, this is problematic because the filter would then give options to the user that wouldn't work for both cards (like, `Chinos, Jeans, Kayak, Slacks, Yacht`). Metabase prefers to prevent such silliness.
+- While connecting cards to a filter, you might see a warning message that says, `The values in this field don’t overlap with the values of any other fields you’ve chosen`. For example, maybe you selected the `Type of Pants` field for one card, but the `Types of Boats` field for another card; if you’re using those fields for the same filter, this is problematic because the filter would then give options to the user that wouldn't work for both cards (like, `Chinos, Jeans, Kayak, Slacks, Yacht`). Kenga Analytics prefers to prevent such silliness.
 - You can’t use a dashboard filter with a field in a question if that field is already being used in the definition of the question. For example, say you have a question called `Orders in January`, which counts all the orders and has a filter on the `Date Order Was Placed` field to only select the orders placed January — you can’t then connect a dashboard filter to the `Orders in January` card through the `Date Order Was Placed` field, because that field is already being used to filter the underlying question's data.
 
 ---

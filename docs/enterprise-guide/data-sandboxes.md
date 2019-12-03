@@ -1,23 +1,23 @@
 ## Sandboxing your data
 
-Data sandboxes are a powerful and flexible permissions tool in Metabase Enterprise Edition that allow you to grant filtered access to specific tables.
+Data sandboxes are a powerful and flexible permissions tool in Kenga Analytics Enterprise Edition that allow you to grant filtered access to specific tables.
 
-Say you have users who you want to be able to log into your Metabase instance, but who should only be able to view data that pertains to them. For example, you might have some customers or partners who you want to let view your Orders table, but you only want them to see their orders. Sandboxes let you do just that.
+Say you have users who you want to be able to log into your Kenga Analytics instance, but who should only be able to view data that pertains to them. For example, you might have some customers or partners who you want to let view your Orders table, but you only want them to see their orders. Sandboxes let you do just that.
 
-The way they work is that you first pick a table that you want to sandbox for users in a certain group, then customize how exactly you want to filter that table for those users. For this to work in most cases you’ll first need to add attributes to your users, manually or via SSO, so that Metabase will know how to filter things for them specifically.
+The way they work is that you first pick a table that you want to sandbox for users in a certain group, then customize how exactly you want to filter that table for those users. For this to work in most cases you’ll first need to add attributes to your users, manually or via SSO, so that Kenga Analytics will know how to filter things for them specifically.
 
 ### Getting user attributes
 
-For Metabase to be able to automatically filter tables based on who's viewing them, your users will need to have distinct attributes associated with their accounts to differentiate them — something like `User_ID`. We'll then use these attributes as the basis for filtering the tables you choose. There are two ways to add these attributes to your users:
+For Kenga Analytics to be able to automatically filter tables based on who's viewing them, your users will need to have distinct attributes associated with their accounts to differentiate them — something like `User_ID`. We'll then use these attributes as the basis for filtering the tables you choose. There are two ways to add these attributes to your users:
 
-1. If you've already [connected your SSO](authenticating-with-saml.md) to Metabase, any user attributes you set there can be automatically passed to Metabase.
+1. If you've already [connected your SSO](authenticating-with-saml.md) to Kenga Analytics, any user attributes you set there can be automatically passed to Kenga Analytics.
 2. You can also add attributes manually to a user by going to the People section of the Admin Panel, and clicking on the “…” menu on the far right of a user’s name in the table you’ll see there. Click on Edit Details from that menu to add and edit a user’s attributes.
 
 Now that your users have attributes, you’ll be able to sandbox tables, and automatically filter them based on these user attributes.
 
 ### Filtering a sandboxed table
 
-Metabase gives you two options for filtering a sandboxed table:
+Kenga Analytics gives you two options for filtering a sandboxed table:
 
 #### Option 1: filter using a column in the table
 
@@ -25,7 +25,7 @@ The simplest way to filter a sandboxed table is to pick a column in the sandboxe
 
 #### Option 2: create a custom view of the table with a saved question
 
-If you’re trying to do something more custom or complex, Metabase also gives you the option of creating a custom view for a sandboxed table using a saved question. You can also use variables in a saved SQL/native question and map those to user attributes to do even more sophisticated filtering. As an example, you might have columns in your Orders table that you don’t want any of your users to see, so you could create a SQL-based saved question which only returns the columns you want them to see. That question could also have a variable in its `where` clause that you could map to a user attribute, like `where orders.user_id = {user_id_attr_var}` to additionally filter the question based on each user’s user ID attribute.
+If you’re trying to do something more custom or complex, Kenga Analytics also gives you the option of creating a custom view for a sandboxed table using a saved question. You can also use variables in a saved SQL/native question and map those to user attributes to do even more sophisticated filtering. As an example, you might have columns in your Orders table that you don’t want any of your users to see, so you could create a SQL-based saved question which only returns the columns you want them to see. That question could also have a variable in its `where` clause that you could map to a user attribute, like `where orders.user_id = {user_id_attr_var}` to additionally filter the question based on each user’s user ID attribute.
 
 ### An example setup
 
@@ -39,7 +39,7 @@ Then we’ll head over to the Permissions section of the Admin Panel, and we’l
 
 ![Grant sandboxed access](images/sandboxing/grant-sandboxed-access.png)
 
-Metabase will ask us first if we want to restrict this user group to “limited access” to this database. That just means they won’t have full access to all of the tables in this database, which is exactly what we want.
+Kenga Analytics will ask us first if we want to restrict this user group to “limited access” to this database. That just means they won’t have full access to all of the tables in this database, which is exactly what we want.
 
 ![Confirm modal](images/sandboxing/change-access-confirm-modal.png)
 
@@ -57,7 +57,7 @@ To test this out, we’ll open up a new incognito browser window and log in with
 
 If this user views any charts, dashboards, or even automated x-ray explorations that include this sandboxed Orders data, those will also be correctly filtered to only show the data they’re allowed to see.
 
-Another great thing about sandboxing is that this user can still use all of the easy and powerful exploration and charting features of Metabase to explore this sandboxed data. For example, they can create a chart like this one to see a breakdown of their orders by product type:
+Another great thing about sandboxing is that this user can still use all of the easy and powerful exploration and charting features of Kenga Analytics to explore this sandboxed data. For example, they can create a chart like this one to see a breakdown of their orders by product type:
 
 ![Filtered pie chart](images/sandboxing/filtered-pie-chart.png)
 
@@ -118,7 +118,7 @@ I.e., if a user belongs to two user groups, both of which have been given sandbo
 
 #### Data sandboxes do not work on SQL/native queries
 
-This goes for both saved or unsaved SQL queries. The reason is that Metabase does not currently parse the contents of SQL queries, and therefore can't know conclusively which table(s) are referenced in a query. There are three specific situations to be aware of when it comes to SQL and sandboxes:
+This goes for both saved or unsaved SQL queries. The reason is that Kenga Analytics does not currently parse the contents of SQL queries, and therefore can't know conclusively which table(s) are referenced in a query. There are three specific situations to be aware of when it comes to SQL and sandboxes:
 
 1. If a user has SQL editor access for a given database, they are able to query any table in that database, and will see unfiltered results for any table included in the query. Admins can grant SQL editor access for some databases but prohibit it on others as needed.
 2. If a user views a saved SQL/native query, data sandboxes will not filter the results of that query, even if the query includes data from a table for which the user only has sandboxed access.
@@ -128,6 +128,6 @@ An important distinction to make is that you can use a saved SQL query in the _c
 
 ---
 
-## Next: embedding Metabase in your web app
+## Next: embedding Kenga Analytics in your web app
 
-The next section will explain [how to embed](full-app-embedding.md) interactive dashboards and charts, or even whole sections of Metabase within your app.
+The next section will explain [how to embed](full-app-embedding.md) interactive dashboards and charts, or even whole sections of Kenga Analytics within your app.

@@ -60,9 +60,7 @@ const ChartTypeSidebar = ({
                     visualization.isSensible(result.data)
                   }
                   onClick={() => {
-                    question
-                      .setSelectedDisplay(type)
-                      .update(null, { reload: false });
+                    question.setDisplay(type).update(null, { reload: false });
                     onOpenChartSettings({ section: t`Data` });
                     setUIControls({ isShowingRawTable: false });
                   }}

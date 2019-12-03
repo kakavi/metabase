@@ -26,27 +26,27 @@
        (u/prog1 (files/get-path filename)
          (files/create-dir-if-not-exists! <>)
          (assert (Files/isWritable <>)
-           (trs "Metabase does not have permissions to write to plugins directory {0}" filename)))
+           (trs "Kenga Analytics does not have permissions to write to plugins directory {0}" filename)))
        ;; If we couldn't create the directory, or the directory is not writable, fall back to a temporary directory
        ;; rather than failing to launch entirely. Log instructions for what should be done to fix the problem.
        (catch Throwable e
          (log/warn
           e
-          (trs "Metabase cannot use the plugins directory {0}" filename)
+          (trs "Kenga Analytics cannot use the plugins directory {0}" filename)
           "\n"
-          (trs "Please make sure the directory exists and that Metabase has permission to write to it.")
-          (trs "You can change the directory Metabase uses for modules by setting the environment variable MB_PLUGINS_DIR.")
+          (trs "Please make sure the directory exists and that Kenga Analytics has permission to write to it.")
+          (trs "You can change the directory Kenga Analytics uses for modules by setting the environment variable MB_PLUGINS_DIR.")
           (trs "Falling back to a temporary directory for now."))
          ;; Check whether the fallback temporary directory is writable. If it's not, there's no way for us to
          ;; gracefully proceed here. Throw an Exception detailing the critical issues.
          (u/prog1 (files/get-path (System/getProperty "java.io.tmpdir"))
            (assert (Files/isWritable <>)
-             (trs "Metabase cannot write to temporary directory. Please set MB_PLUGINS_DIR to a writable directory and restart Metabase."))))))))
+             (trs "Kenga Analytics cannot write to temporary directory. Please set MB_PLUGINS_DIR to a writable directory and restart Kenga Analytics."))))))))
 
 ;; Actual logic is wrapped in a delay rather than a normal function so we don't log the error messages more than once
 ;; in cases where we have to fall back to the system temporary directory
 (defn- plugins-dir
-  "Get a `Path` to the Metabase plugins directory, creating it if needed. If it cannot be created for one reason or
+  "Get a `Path` to the Kenga Analytics plugins directory, creating it if needed. If it cannot be created for one reason or
   another, or if we do not have write permissions for it, use a temporary directory instead."
   ^Path []
   @plugins-dir*)
@@ -101,7 +101,7 @@
                             ;; ignore it but let people know they can get rid of it.
                             (log/warn
                              (u/format-color 'red
-                                 (trs "spark-deps.jar is no longer needed by Metabase 0.32.0+. You can delete it from the plugins directory.")))))]
+                                 (trs "spark-deps.jar is no longer needed by Kenga Analytics 0.32.0+. You can delete it from the plugins directory.")))))]
     path))
 
 (defn- has-manifest? ^Boolean [^Path path]
@@ -119,30 +119,20 @@
       (catch Throwable e
         (log/error e (u/format-color 'red (trs "Failied to initialize plugin {0}" (.getFileName path))))))))
 
-(defn- load! []
+(defn load-plugins!
+  "Load Kenga Analytics plugins. The are JARs shipped as part of Kenga Analytics itself, under the `resources/modules` directory (the
+  source for these JARs is under the `modules` directory); and others manually added by users to the Kenga Analytics plugins
+  directory, which defaults to `./plugins`.
+
+  When loading plugins, Kenga Analytics performs the following steps:
+
+  *  Kenga Analytics creates the plugins directory if it does not already exist.
+  *  Any plugins that are shipped as part of Kenga Analytics itself are extracted from the Metabase uberjar (or `resources`
+     directory when running with `lein`) into the plugins directory.
+  *  Each JAR in the plugins directory is added to the classpath.
+  *  For JARs that include a Kenga Analytics plugin manifest (a `metabase-plugin.yaml` file), "
+  []
   (log/info (u/format-color 'magenta (trs "Loading plugins in {0}..." (str (plugins-dir)))))
   (extract-system-modules!)
   (let [paths (plugins-paths)]
     (init-plugins! paths)))
-
-(defonce ^:private load!* (delay (load!)))
-
-(defn load-plugins!
-  "Load Metabase plugins. The are JARs shipped as part of Metabase itself, under the `resources/modules` directory (the
-  source for these JARs is under the `modules` directory); and others manually added by users to the Metabase plugins
-  directory, which defaults to `./plugins`.
-
-  When loading plugins, Metabase performs the following steps:
-
-  *  Metabase creates the plugins directory if it does not already exist.
-  *  Any plugins that are shipped as part of Metabase itself are extracted from the Metabase uberjar (or `resources`
-     directory when running with `lein`) into the plugins directory.
-  *  Each JAR in the plugins directory that *does not* include a Metabase plugin manifest is added to the classpath.
-  *  For JARs that include a Metabase plugin manifest (a `metabase-plugin.yaml` file), a lazy-loading Metabase driver
-     is registered; when the driver is initialized (automatically, when certain methods are called) the JAR is added
-     to the classpath and the driver namespace is loaded
-
-  This function will only perform loading steps the first time it is called — it is safe to call this function more
-  than once."
-  []
-  @load!*)

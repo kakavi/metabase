@@ -19,8 +19,7 @@
             [toucan.db :as db])
   (:import java.text.NumberFormat
            java.util.UUID
-           [metabase.query_processor.middleware.parameters.native.interface CommaSeparatedNumbers FieldFilter
-            MultipleValues]))
+           [metabase.query_processor.middleware.parameters.native.interface CommaSeparatedNumbers FieldFilter MultipleValues]))
 
 (def ^:private ParamType
   (s/enum :number

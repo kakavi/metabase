@@ -13,13 +13,13 @@ const BaseSidebar = ({ style, className }) => (
   <div className={cx(S.sidebar, className)} style={style}>
     <div className={S.breadcrumbs}>
       <Breadcrumbs
-        className="py4 ml3"
+        className="py4"
         crumbs={[[t`Data Reference`]]}
         inSidebar={true}
         placeholder={t`Data Reference`}
       />
     </div>
-    <ol className="mx3">
+    <ol>
       <SidebarItem
         key="/reference/metrics"
         href="/reference/metrics"
@@ -36,7 +36,7 @@ const BaseSidebar = ({ style, className }) => (
         key="/reference/databases"
         href="/reference/databases"
         icon="database"
-        name={t`Our data`}
+        name={t`Databases and tables`}
       />
     </ol>
   </div>

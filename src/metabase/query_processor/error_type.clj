@@ -23,7 +23,7 @@
   (isa? hierarchy error-type :error))
 
 (defn show-in-embeds?
-  "Should errors of this type be shown to users of Metabase in embedded Cards or Dashboards? Normally, we return a
+  "Should errors of this type be shown to users of Kenga Analytics in embedded Cards or Dashboards? Normally, we return a
   generic 'Query Failed' error message for embedded queries, so as not to leak information. Some errors (like missing
   parameter errors), however, should be shown even in these situations."
   [error-type]
@@ -79,10 +79,6 @@
 (deferror qp
   "Generic ancestor type for all unexpected errors (e.g., uncaught Exceptions) in QP code."
   :parent server)
-
-(deferror driver
-  "Generic ancestor type for all errors related to bad drivers and uncaught Exceptions in driver code."
-  :parent qp)
 
 ;;;; #### Data Warehouse (DB) Errors
 

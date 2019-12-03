@@ -45,10 +45,7 @@ export default class Map extends Component {
   static minSize = { width: 4, height: 4 };
 
   static isSensible({ cols, rows }) {
-    return (
-      PinMap.isSensible({ cols, rows }) ||
-      ChoroplethMap.isSensible({ cols, rows })
-    );
+    return true;
   }
 
   static placeholderSeries = [

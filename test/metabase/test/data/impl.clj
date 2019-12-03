@@ -40,7 +40,7 @@
            (@locks driver)))))))
 
 (defmulti get-or-create-database!
-  "Create DBMS database associated with `database-definition`, create corresponding Metabase Databases/Tables/Fields,
+  "Create DBMS database associated with `database-definition`, create corresponding Kenga Analytics Databases/Tables/Fields,
   and sync the Database. `driver` is a keyword name of a driver that implements test extension methods (as defined in
   the `metabase.test.data.interface` namespace); `driver` defaults to `driver/*driver*` if bound, or `:h2` if not.
   `database-definition` is anything that implements the `tx/get-database-definition` method."
@@ -86,7 +86,7 @@
     (u/with-timeout create-database-timeout-ms
       (tu.tz/with-jvm-tz "UTC"
         (tx/create-db! driver database-definition)))
-    ;; Add DB object to Metabase DB
+    ;; Add DB object to Kenga Analytics DB
     (let [db (db/insert! Database
                :name    database-name
                :engine  (name driver)

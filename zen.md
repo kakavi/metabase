@@ -1,4 +1,4 @@
-# The Zen of Metabase
+# The Zen of Kenga Analytics
 
 - Give the user value as soon as possible
 
@@ -10,4 +10,4 @@
 
 - Don’t leave the user booby traps
 
-- Go the extra mile to make the user experience pleasant 
+- Go the extra mile to make the user experience pleasant

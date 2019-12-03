@@ -88,7 +88,7 @@
   (google/execute (.list (.columns (.metadata client)) "ga")))
 
 (defn- column-attribute
-  "Get the value of `attribute-name` for `column`."
+  "Get the value of ATTRIBUTE-NAME for COLUMN."
   [^Column column, attribute-name]
   (get (.getAttributes column) (name attribute-name)))
 
@@ -204,7 +204,6 @@
                  (json/parse-string query keyword)
                  query)
         client (database->client database)]
-    ;; `end-date` is inclusive!!!
     (u/prog1 (.get (.ga (.data client))
                    (:ids query)
                    (:start-date query)

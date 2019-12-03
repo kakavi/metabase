@@ -1,6 +1,6 @@
 ## JWT-based Authentication
 
-You can connect Metabase to your JWT-based identity provider to allow your Metabase users to authenticate through it.
+You can connect Kenga Analytics to your JWT-based identity provider to allow your Kenga Analytics users to authenticate through it.
 
 ### Enabling JWT authentication
 First, navigate to the Settings section of the Admin area, then click on the Authentication tab. Click the `Configure` button in the JWT section of this page, and you'll see this form:
@@ -11,12 +11,12 @@ Click the toggle at the top of the form to enable JWT-based authentication, then
 
 Here's a breakdown of each of the settings:
 
-**Identity Provider URI:** This is where Metabase will redirect login requests. That is, it's where your users go to log in through your identify provider.
+**Identity Provider URI:** This is where Kenga Analytics will redirect login requests. That is, it's where your users go to log in through your identify provider.
 
 **String Used by the JWT Signing Key:** This is a string used to seed the private key that is used to validate JWT messages.
 
 #### User attribute configuration (optional)
-These are additional settings you can fill in to pass user attributes to Metabase.
+These are additional settings you can fill in to pass user attributes to Kenga Analytics.
 
 **Email attribute:** the key to retrieve each JWT user's email address.
 
@@ -26,11 +26,11 @@ These are additional settings you can fill in to pass user attributes to Metabas
 
 #### Group Schema
 
-You can use your JWT to assign Metabase users to custom groups by following these steps:
+You can use your JWT to assign Kenga Analytics users to custom groups by following these steps:
 
 1. Add this to your JWT: `groups: ["group_name"]`
-2. In the Admin Panel in Metabase, go to the Authentication tab of the Settings section and click the Configure button on JWT. On this screen, turn on the toggle under "SYNCHRONIZE GROUP MEMBERSHIPS".
-3. Next, click Edit Mappings. In this modal, type in the name of one of your groups as defined in the JWT, then click Add. In the row that appears, click the dropdown to pick the Metabase group that this should map to. Repeat this for each of the groups you want to map.
+2. In the Admin Panel in Kenga Analytics, go to the Authentication tab of the Settings section and click the Configure button on JWT. On this screen, turn on the toggle under "SYNCHRONIZE GROUP MEMBERSHIPS".
+3. Next, click Edit Mappings. In this modal, type in the name of one of your groups as defined in the JWT, then click Add. In the row that appears, click the dropdown to pick the Kenga Analytics group that this should map to. Repeat this for each of the groups you want to map.
 
 ### Disabling Password Log-in
 

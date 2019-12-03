@@ -15,7 +15,7 @@ describe("admin/settings", () => {
   // TODO Atte Keinänen 6/22/17: Disabled because we already have converted this to Jest&Enzyme in other branch
   describe("admin settings", () => {
     // pick a random site name to try updating it to
-    const siteName = "Metabase" + Math.random();
+    const siteName = "Kenga Analytics" + Math.random();
 
     it("should save the setting", async () => {
       const store = await createTestStore();

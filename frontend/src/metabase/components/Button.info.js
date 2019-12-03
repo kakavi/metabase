@@ -4,7 +4,7 @@ import { t } from "ttag";
 export const component = Button;
 
 export const description = `
-Metabase's main button component.
+Kenga Analytic's main button component.
 `;
 
 export const examples = {

@@ -1,17 +1,21 @@
 (ns metabase.util.honeysql-extensions
   (:refer-clojure :exclude [+ - / * mod inc dec cast concat format])
-  (:require [clojure
-             [pprint :as pprint]
-             [string :as str]]
+  (:require [clojure.string :as str]
             [honeysql
              [core :as hsql]
              [format :as hformat]]
-            [metabase.util :as u]
+            [metabase
+             [config :as config]
+             [util :as u]]
             [potemkin.types :as p.types]
-            [pretty.core :as pretty :refer [PrettyPrintable]]
+            [pretty.core :refer [PrettyPrintable]]
             [schema.core :as s])
   (:import honeysql.format.ToSql
            java.util.Locale))
+
+(when config/is-dev?
+  (alter-meta! #'honeysql.core/format assoc :style/indent 1)
+  (alter-meta! #'honeysql.core/call   assoc :style/indent 1))
 
 (defn- english-upper-case
   "Use this function when you need to upper-case an identifier or table name. Similar to `clojure.string/upper-case`
@@ -80,8 +84,9 @@
     (cons 'identifier (cons identifier-type components))))
 
 ;; don't use `->Identifier` or `map->Identifier`. Use the `identifier` function instead, which cleans up its input
-(alter-meta! #'->Identifier    assoc :private true)
-(alter-meta! #'map->Identifier assoc :private true)
+(when-not config/is-prod?
+  (alter-meta! #'->Identifier    assoc :private true)
+  (alter-meta! #'map->Identifier assoc :private true))
 
 (s/defn identifier :- Identifier
   "Define an identifer of type with `components`. Prefer this to using keywords for identifiers, as those do not
@@ -114,8 +119,9 @@
     (list 'literal literal)))
 
 ;; as with `Identifier` you should use the the `literal` function below instead of the auto-generated factory functions.
-(alter-meta! #'->Literal    assoc :private true)
-(alter-meta! #'map->Literal assoc :private true)
+(when-not config/is-prod?
+  (alter-meta! #'->Literal    assoc :private true)
+  (alter-meta! #'map->Literal assoc :private true))
 
 (defn literal
   "Wrap keyword or string `s` in single quotes and a HoneySQL `raw` form.
@@ -178,21 +184,3 @@
 (def ^{:arglists '([& exprs])} quarter "SQL `quarter` function."(partial hsql/call :quarter))
 (def ^{:arglists '([& exprs])} year    "SQL `year` function."   (partial hsql/call :year))
 (def ^{:arglists '([& exprs])} concat  "SQL `concat` function." (partial hsql/call :concat))
-
-;; Etc (Dev Stuff)
-(alter-meta! #'honeysql.core/format assoc :style/indent 1)
-(alter-meta! #'honeysql.core/call   assoc :style/indent 1)
-
-(require 'honeysql.types)
-(extend-protocol PrettyPrintable
-  honeysql.types.SqlCall
-  (pretty [{fn-name :name, args :args}]
-    (apply list 'hsql/call fn-name args)))
-
-(defmethod print-method honeysql.types.SqlCall
-  [call writer]
-  (print-method (pretty/pretty call) writer))
-
-(defmethod clojure.pprint/simple-dispatch honeysql.types.SqlCall
-  [call]
-  (clojure.pprint/write-out (pretty/pretty call)))

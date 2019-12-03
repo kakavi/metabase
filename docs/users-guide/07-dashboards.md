@@ -68,7 +68,7 @@ You can view all of your archived items by clicking the menu icon in the top-rig
 
 After a while, your team might have a lot of dashboards. To make it a little easier to find dashboards that your team looks at often, you can pin them to the top of the collection by clicking and dragging them to the top or by opening the `…` menu and selecting the Pin action.
 
-You can also search for any dashboard (or question, collection, or pulse) by its title in the big search box at the top of Metabase.
+You can also search for any dashboard (or question, collection, or pulse) by its title in the big search box at the top of Kenga Analytics.
 
 ### Fullscreen dashboards
 
@@ -94,7 +94,7 @@ Combining fullscreen mode and auto refresh is a great way to keep your team in s
 
 ## Sharing dashboards with public links
 
-If your Metabase administrator has enabled [public sharing](../administration-guide/12-public-links.md) on a saved question or dashboard, you can go to that question or dashboard and click on the sharing icon to find its public links. Public links can be viewed by anyone, even if they don't have access to Metabase. You can also use the public embedding code to embed your question or dashboard in a simple web page or blog post.
+If your Kenga Analytics administrator has enabled [public sharing](../administration-guide/12-public-links.md) on a saved question or dashboard, you can go to that question or dashboard and click on the sharing icon to find its public links. Public links can be viewed by anyone, even if they don't have access to Kenga Analytics. You can also use the public embedding code to embed your question or dashboard in a simple web page or blog post.
 
 ![Share icon](images/share-icon.png)
 
@@ -108,7 +108,7 @@ To configure a dashboard using its URL, you can add the following optional keywo
 
 The part that says `refresh=60` sets the dashboard to automatically refresh every 60 seconds, `fullscreen` sets it to fullscreen mode, and `night` sets it to night mode (night mode only works when using fullscreen). Use an `&` in between keywords, and make sure there's a hash `#` after the dashboard's ID number.
 
-There is one important limitation with the `fullscreen` option. For security reasons, many browsers require user interaction to initiate fullscreen. In those browsers, using the `fullscreen` option will enable the fullscreen UI in Metabase, but it won't expand the browser content to fill the screen. To ensure the dashboard occupies the entire screen, either activate fullscreen by clicking the button in the UI or use the `fullscreen` URL option and launch the browser in fullscreen or kiosk mode.
+There is one important limitation with the `fullscreen` option. For security reasons, many browsers require user interaction to initiate fullscreen. In those browsers, using the `fullscreen` option will enable the fullscreen UI in Kenga Analytics, but it won't expand the browser content to fill the screen. To ensure the dashboard occupies the entire screen, either activate fullscreen by clicking the button in the UI or use the `fullscreen` URL option and launch the browser in fullscreen or kiosk mode.
 
 ## Tips on creating helpful dashboards
 

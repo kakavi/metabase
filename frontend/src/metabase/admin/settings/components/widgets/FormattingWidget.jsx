@@ -7,7 +7,7 @@ import ColumnSettings from "metabase/visualizations/components/ColumnSettings";
 const SETTING_TYPES = [
   {
     name: "Dates and Times",
-    type: TYPE.Temporal,
+    type: TYPE.DateTime,
     settings: [
       "date_style",
       "date_separator",
@@ -16,7 +16,7 @@ const SETTING_TYPES = [
       "time_style",
     ],
     column: {
-      special_type: TYPE.Temporal,
+      special_type: TYPE.DateTime,
       unit: "second",
     },
   },

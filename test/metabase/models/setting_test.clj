@@ -331,7 +331,7 @@
 ;; (#4178)
 
 (setting/defsetting toucan-name
-  "Name for the Metabase Toucan mascot."
+  "Name for the Kenga Analytics Toucan mascot."
   :internal? true)
 
 (expect

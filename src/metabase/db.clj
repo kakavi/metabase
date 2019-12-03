@@ -92,7 +92,7 @@
                  (not (:sslmode <>)))
         (log/warn (trs "Warning: Postgres connection string with `ssl=true` detected.")
                   (trs "You may need to add `?sslmode=require` to your application DB connection string.")
-                  (trs "If Metabase fails to launch, please add it and try again.")
+                  (trs "If Kenga Analytics fails to launch, please add it and try again.")
                   (trs "See https://github.com/metabase/metabase/issues/8908 for more details."))))))
 
 (def ^:private connection-string-details
@@ -100,20 +100,20 @@
            (parse-connection-string uri))))
 
 (defn db-type
-  "The type of backing DB used to run Metabase. `:h2`, `:mysql`, or `:postgres`."
+  "The type of backing DB used to run Kenga Analytics. `:h2`, `:mysql`, or `:postgres`."
   ^clojure.lang.Keyword []
   (or (:type @connection-string-details)
       (config/config-kw :mb-db-type)))
 
 (def ^:private db-connection-details
-  "Connection details that can be used when pretending the Metabase DB is itself a `Database` (e.g., to use the Generic
-  SQL driver functions on the Metabase DB itself)."
+  "Connection details that can be used when pretending the Kenga Analytics DB is itself a `Database` (e.g., to use the Generic
+  SQL driver functions on the Kenga Analytics DB itself)."
   (delay
    (when (= (db-type) :h2)
      (log/warn
       (u/format-color 'red
           (str
-           (trs "WARNING: Using Metabase with an H2 application database is not recommended for production deployments.")
+           (trs "WARNING: Using Kenga Analytics with an H2 application database is not recommended for production deployments.")
            " "
            (trs "For production deployments, we highly recommend using Postgres, MySQL, or MariaDB instead.")
            " "
@@ -382,25 +382,25 @@
   (atom false))
 
 (defn db-is-setup?
-  "True if the Metabase DB is setup and ready."
+  "True if the Kenga Analytics DB is setup and ready."
   ^Boolean []
   @db-setup-finished?)
 
 (def ^:dynamic *allow-potentailly-unsafe-connections*
   "We want to make *every* database connection made by the drivers safe -- read-only, only connect if DB file exists,
   etc.  At the same time, we'd like to be able to use driver functionality like `can-connect-with-details?` to check
-  whether we can connect to the Metabase database, in which case we'd like to allow connections to databases that
+  whether we can connect to the Kenga Analytics database, in which case we'd like to allow connections to databases that
   don't exist.
 
-  So we need some way to distinguish the Metabase database from other databases. We could add a key to the details
-  map specifying that it's the Metabase DB, but what if some shady user added that key to another database?
+  So we need some way to distinguish the Kenga Analytics database from other databases. We could add a key to the details
+  map specifying that it's the Kenga Analytics DB, but what if some shady user added that key to another database?
 
   We could check if a database details map matched `db-connection-details` above, but what if a shady user went
-  Meta-Metabase and added the Metabase DB to Metabase itself? Then when they used it they'd have potentially unsafe
+  Meta-Metabase and added the Kenga Analytics DB to Kenga Analytics itself? Then when they used it they'd have potentially unsafe
   access.
 
   So this is where dynamic variables come to the rescue. We'll make this one `true` when we use `can-connect?` for the
-  Metabase DB, in which case we'll allow connection to non-existent H2 (etc.) files, and leave it `false` happily and
+  Kenga Analytics DB, in which case we'll allow connection to non-existent H2 (etc.) files, and leave it `false` happily and
   forever after, making all other connnections \"safe\"."
   false)
 
@@ -414,14 +414,14 @@
    (assert (binding [*allow-potentailly-unsafe-connections* true]
              (classloader/require 'metabase.driver.util)
              ((resolve 'metabase.driver.util/can-connect-with-details?) driver details :throw-exceptions))
-     (trs "Unable to connect to Metabase {0} DB." (name driver)))
+     (trs "Unable to connect to Kenga Analytics {0} DB." (name driver)))
    (log/info (trs "Verify Database Connection ... ") (u/emoji "✅"))))
 
 
 (def ^:dynamic ^Boolean *disable-data-migrations*
   "Should we skip running data migrations when setting up the DB? (Default is `false`).
   There are certain places where we don't want to do this; for example, none of the migrations should be ran when
-  Metabase is launched via `load-from-h2`.  That's because they will end up doing things like creating duplicate
+  Kenga Analytics is launched via `load-from-h2`.  That's because they will end up doing things like creating duplicate
   entries for the \"magic\" groups and permissions entries. "
   false)
 
@@ -431,7 +431,7 @@
   [db-details]
   (let [sql (migrate! db-details :print)]
     (log/info (str "Database Upgrade Required\n\n"
-                   "NOTICE: Your database requires updates to work with this version of Metabase.  "
+                   "NOTICE: Your database requires updates to work with this version of Kenga Analytics.  "
                    "Please execute the following sql commands on your database before proceeding.\n\n"
                    sql
                    "\n\n"
@@ -508,7 +508,7 @@
 
 
 (s/defn ^:private type-keyword->descendants :- (su/non-empty #{su/FieldTypeKeywordOrString})
-  "Return a set of descendents of Metabase `type-keyword`. This includes `type-keyword` itself, so the set will always
+  "Return a set of descendents of Kenga Analytics `type-keyword`. This includes `type-keyword` itself, so the set will always
   have at least one element.
 
      (type-keyword->descendants :type/Coordinate) ; -> #{\"type/Latitude\" \"type/Longitude\" \"type/Coordinate\"}"
@@ -523,7 +523,7 @@
       ->
      (db/select Field :special_type [:in #{\"type/URL\" \"type/ImageURL\" \"type/AvatarURL\"}])
 
-   Also accepts optional `expr` for use directly in a HoneySQL `where`:
+   Also accepts optional EXPR for use directly in a HoneySQL `where`:
 
      (db/select Field {:where (mdb/isa :special_type :type/URL)})
      ->

@@ -20,18 +20,13 @@ export default class LegendVertical extends Component {
   static propTypes = {};
   static defaultProps = {};
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     // Get the bounding rectangle of the chart widget to determine if
     // legend items will overflow the widget area
     const size = ReactDOM.findDOMNode(this).getBoundingClientRect();
 
-    // check the height, width may flucatuate depending on the browser causing an infinite loop
-    // check overflowCount, because after setting overflowCount the height changes and it causing an infinite loop too
-    if (
-      this.state.size &&
-      size.height !== this.state.size.height &&
-      prevState.overflowCount === this.state.overflowCount
-    ) {
+    // only check the height. width may flucatuate depending on the browser causing an infinite loop
+    if (this.state.size && size.height !== this.state.size.height) {
       this.setState({ overflowCount: 0, size });
     } else if (this.state.overflowCount === 0) {
       let overflowCount = 0;

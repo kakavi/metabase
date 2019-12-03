@@ -1,13 +1,13 @@
 ---
 name: Questions and help
-about: If you think you need help with something related to Metabase
+about: If you think you need help with something related to Kenga Analytics
 title: ''
 labels: "Type:Question, .Needs Triage"
 assignees: ''
 
 ---
 
-For help with installation and setup, information on how specific features work, or general questions about Metabase, please use our discussion forum:
+For help with installation and setup, information on how specific features work, or general questions about Kenga Analytics, please use our discussion forum:
 
 https://discourse.metabase.com
 

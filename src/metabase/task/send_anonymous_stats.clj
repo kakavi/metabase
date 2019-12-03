@@ -1,5 +1,5 @@
 (ns metabase.task.send-anonymous-stats
-  "Contains a Metabase task which periodically sends anonymous usage information to the Metabase team."
+  "Contains a Kenga Analytics task which periodically sends anonymous usage information to the Kenga Analytics team."
   (:require [clojure.tools.logging :as log]
             [clojurewerkz.quartzite
              [jobs :as jobs]

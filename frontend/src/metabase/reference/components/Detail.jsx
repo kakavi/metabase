@@ -18,7 +18,7 @@ const Detail = ({
   field,
 }) => (
   <div className={cx(S.detail)}>
-    <div className={isEditing ? cx(S.detailBody, "flex-full") : S.detailBody}>
+    <div className={S.detailBody}>
       <div className={S.detailTitle}>
         {url ? (
           <Link to={url} className={S.detailName}>
@@ -29,7 +29,9 @@ const Detail = ({
         )}
       </div>
       <div
-        className={cx(description ? S.detailSubtitle : S.detailSubtitleLight)}
+        className={cx(description ? S.detailSubtitle : S.detailSubtitleLight, {
+          mt1: true,
+        })}
       >
         {isEditing ? (
           <textarea

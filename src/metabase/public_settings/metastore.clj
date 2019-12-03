@@ -138,7 +138,7 @@
       #{})))
 
 (defn hide-embed-branding?
-  "Should we hide the 'Powered by Metabase' attribution on the embedding pages? `true` if we have a valid premium
+  "Should we hide the 'Powered by Kenga Analytics' attribution on the embedding pages? `true` if we have a valid premium
    embedding token."
   []
   (boolean ((token-features) "embedding")))

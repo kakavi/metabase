@@ -37,8 +37,7 @@
   :profiles
   {:provided
    {:dependencies
-    [[org.clojure/clojure "1.10.1"]
-     [metabase-core "1.0.0-SNAPSHOT"]]}
+    [[metabase-core "1.0.0-SNAPSHOT"]]}
 
    :uberjar
    {:auto-clean    true

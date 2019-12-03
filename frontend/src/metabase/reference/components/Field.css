@@ -7,11 +7,12 @@
 }
 
 :local(.fieldNameTitle) {
-  composes: flex-half pr2 from "style";
+  composes: flex-full pr2 from "style";
 }
 
 :local(.fieldName) {
   composes: fieldNameTitle;
+  font-size: 16px;
 }
 
 :local(.fieldNameTextInput) {
@@ -26,13 +27,13 @@
 }
 
 :local(.fieldType) {
-  composes: flex-1-quarter text-medium pr2 from "style";
+  composes: flex-half pr2 from "style";
   overflow: hidden;
   white-space: nowrap;
 }
 
 :local(.fieldDataType) {
-  composes: flex-1-quarter text-medium from "style";
+  composes: flex-half from "style";
 }
 
 :local(.fieldSecondary) {
@@ -42,9 +43,7 @@
 
 :local(.fieldActualName) {
   composes: fieldNameTitle;
-  composes: text-monospace text-light from "style";
-  font-size: 12px;
-  letter-spacing: 1px;
+  composes: text-monospace from "style";
 }
 
 :local(.fieldForeignKey) {

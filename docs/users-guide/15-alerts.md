@@ -1,6 +1,6 @@
 ## Getting alerts about questions
 
-Whether you're keeping track of revenue, users, or negative reviews, there are often times when you want to be alerted about something. Metabase has a few different kinds of alerts you can set up, and you can choose to be notified via email or Slack.
+Whether you're keeping track of revenue, users, or negative reviews, there are often times when you want to be alerted about something. Kenga Analytics has a few different kinds of alerts you can set up, and you can choose to be notified via email or Slack.
 
 ### Getting alerts
 
@@ -8,7 +8,7 @@ To start using alerts, someone on your team who's an administrator will need to 
 
 ### Types of alerts
 
-There are three kinds of things you can get alerted about in Metabase:
+There are three kinds of things you can get alerted about in Kenga Analytics:
 
 1. When a time series crosses a goal line.
 2. When a progress bar reaches or goes below its goal.
@@ -32,7 +32,7 @@ This is where you'll get to choose a few things:
 
 - Whether you want to be alerted when the time series goes above the goal line or when it goes below it.
 - Whether you only wanted to be alerted every time this happens or only the first time.
-- How often you want Metabase to check to see if the goal line has been crossed.
+- How often you want Kenga Analytics to check to see if the goal line has been crossed.
 
 ![Goal line alert options](./images/alerts/goal-line-options.png)
 
@@ -56,15 +56,15 @@ You probably don't want to be alerted about all the bad reviews you've _ever_ go
 
 ![No results](./images/alerts/no-results.png)
 
-Save the question, the click on the bell icon in the bottom-right of the screen, and select how often you want Metabase to check this question for results. That's it!
+Save the question, the click on the bell icon in the bottom-right of the screen, and select how often you want Kenga Analytics to check this question for results. That's it!
 
 ### Adding additional recipients to your alerts
 
-If you're an administrator of your Metabase instance, you'll be able to see and edit every alert on all saved questions. You'll also see some additional options to add recipients to alerts, which look like this:
+If you're an administrator of your Kenga Analytics instance, you'll be able to see and edit every alert on all saved questions. You'll also see some additional options to add recipients to alerts, which look like this:
 
 ![Recipients](./images/alerts/recipients.png)
 
-Just like with [Pulses](10-pulses.md), you can add any Metabase user, email address, or even a Slack channel as a recipient of an alert. Admins can add or remove recipients on any alert, even ones that they did not create themselves.
+Just like with [Pulses](10-pulses.md), you can add any Kenga Analytics user, email address, or even a Slack channel as a recipient of an alert. Admins can add or remove recipients on any alert, even ones that they did not create themselves.
 
 Here's more information about [setting up email integration](../administration-guide/02-setting-up-email.md) and [setting up Slack integration](../administration-guide/09-setting-up-slack.md).
 

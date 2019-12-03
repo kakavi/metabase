@@ -28,7 +28,8 @@
   (instance? FieldFilter x))
 
 ;; as in a literal date, defined by date-string S
-(p.types/defrecord+ Date [^String s]
+;; `s` is a String
+(p.types/defrecord+ Date [s]
   PrettyPrintable
   (pretty [_]
     (list 'Date. s)))

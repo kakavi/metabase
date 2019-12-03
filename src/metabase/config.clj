@@ -80,7 +80,7 @@
                    [(keyword k) v]))))))
 
 (def mb-version-info
-  "Information about the current version of Metabase.
+  "Information about the current version of Kenga Analytics.
    This comes from `resources/version.properties` for prod builds and is fetched from `git` via the `./bin/version` script for dev.
 
      mb-version-info -> {:tag: \"v0.11.1\", :hash: \"afdf863\", :branch: \"about_metabase\", :date: \"2015-10-05\"}"
@@ -97,12 +97,12 @@
     (format "%s (%s %s)" tag hash branch)))
 
 (def ^String mb-app-id-string
-  "A formatted version string including the word 'Metabase' appropriate for passing along
-   with database connections so admins can identify them as Metabase ones.
-   Looks something like `Metabase v0.25.0.RC1`."
-  (str "Metabase " (mb-version-info :tag)))
+  "A formatted version string including the word 'Kenga Analytics' appropriate for passing along
+   with database connections so admins can identify them as Kenga Analytics ones.
+   Looks something like `Kenga Analytics v0.25.0.RC1`."
+  (str "Kenga Analytics " (mb-version-info :tag)))
 
-(defonce ^{:doc "This UUID is randomly-generated upon launch and used to identify this specific Metabase instance during
+(defonce ^{:doc "This UUID is randomly-generated upon launch and used to identify this specific Kenga Analytics instance during
                 this specifc run. Restarting the server will change this UUID, and each server in a horizontal cluster
                 will have its own ID, making this different from the `site-uuid` Setting."}
   local-process-uuid

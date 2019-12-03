@@ -2,7 +2,7 @@
 ;; full set of options are here .. https://github.com/technomancy/leiningen/blob/master/sample.project.clj
 
 (defproject metabase-core "1.0.0-SNAPSHOT"
-  :description      "Metabase Community Edition"
+  :description      "Kenga Analytics Community Edition"
   :url              "https://metabase.com/"
   :min-lein-version "2.5.0"
 
@@ -243,10 +243,7 @@
 
    :include-all-drivers
    [:with-include-drivers-middleware
-   {:include-drivers :all
-    :injections
-    [(require 'metabase.plugins)
-     (metabase.plugins/load-plugins!)]}]
+    {:include-drivers :all}]
 
    :repl
    [:include-all-drivers
@@ -260,12 +257,13 @@
    :eastwood
    [:include-all-drivers
     {:plugins
-     [[jonase/eastwood "0.3.6" :exclusions [org.clojure/clojure]]]
+     [[jonase/eastwood "0.3.1" :exclusions [org.clojure/clojure]]]
 
      :eastwood
-     {:exclude-namespaces [:test-paths dev dev.test]
+     {:exclude-namespaces [:test-paths dev]
       :config-files       ["./test_resources/eastwood-config.clj"]
       :add-linters        [:unused-private-vars
+                           :unused-namespaces
                            ;; These linters are pretty useful but give a few false positives and can't be selectively
                            ;; disabled (yet)
                            ;;
@@ -276,12 +274,8 @@
                            ;; get them to work
                            #_:unused-fn-args
                            #_:unused-locals]
-      :exclude-linters    [; Turn this off temporarily until we finish removing self-deprecated functions & macros
-                           :deprecations
-                           ;; this has a fit in libs that use Potemin `import-vars` such as `java-time`
-                           :implicit-dependencies
-                           ;; too many false positives for now
-                           :unused-ret-vals]}}]
+      ;; Turn this off temporarily until we finish removing self-deprecated functions & macros
+      :exclude-linters    [:deprecations]}}]
 
    ;; run ./bin/reflection-linter to check for reflection warnings
    :reflection-warnings
@@ -326,7 +320,7 @@
                    "lein-commands/strip-and-compress"]
     :main ^:skip-aot metabase.strip-and-compress-module}
 
-   ;; Profile Metabase start time with `lein profile`
+   ;; Profile Kenga Analytics start time with `lein profile`
    :profile
    {:jvm-opts ["-XX:+CITime"                                          ; print time spent in JIT compiler
                "-XX:+PrintGC"]} ; print a message when garbage collection takes place

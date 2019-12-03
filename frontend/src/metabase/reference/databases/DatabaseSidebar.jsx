@@ -14,26 +14,24 @@ const DatabaseSidebar = ({ database, style, className }) => (
     <ul>
       <div className={S.breadcrumbs}>
         <Breadcrumbs
-          className="py4 ml3"
+          className="py4"
           crumbs={[[t`Databases`, "/reference/databases"], [database.name]]}
           inSidebar={true}
           placeholder={t`Data Reference`}
         />
       </div>
-      <ol className="mx3">
-        <SidebarItem
-          key={`/reference/databases/${database.id}`}
-          href={`/reference/databases/${database.id}`}
-          icon="document"
-          name={t`Details`}
-        />
-        <SidebarItem
-          key={`/reference/databases/${database.id}/tables`}
-          href={`/reference/databases/${database.id}/tables`}
-          icon="table2"
-          name={t`Tables in ${database.name}`}
-        />
-      </ol>
+      <SidebarItem
+        key={`/reference/databases/${database.id}`}
+        href={`/reference/databases/${database.id}`}
+        icon="document"
+        name={t`Details`}
+      />
+      <SidebarItem
+        key={`/reference/databases/${database.id}/tables`}
+        href={`/reference/databases/${database.id}/tables`}
+        icon="table2"
+        name={t`Tables in ${database.name}`}
+      />
     </ul>
   </div>
 );

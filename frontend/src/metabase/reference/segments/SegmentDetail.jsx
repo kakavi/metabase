@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 import { t } from "ttag";
-import S from "../components/Detail.css";
 import List from "metabase/components/List";
 import LoadingAndErrorWrapper from "metabase/components/LoadingAndErrorWrapper";
 
@@ -13,7 +12,6 @@ import EditableReferenceHeader from "metabase/reference/components/EditableRefer
 import Detail from "metabase/reference/components/Detail";
 import UsefulQuestions from "metabase/reference/components/UsefulQuestions";
 import Formula from "metabase/reference/components/Formula";
-import Link from "metabase/components/Link";
 
 import { getQuestionUrl } from "../utils";
 
@@ -36,7 +34,7 @@ const interestingQuestions = (table, segment) => {
   return [
     {
       text: t`Number of ${segment.name}`,
-      icon: "number",
+      icon: { name: "number", scale: 1, viewBox: "8 8 16 16" },
       link: getQuestionUrl({
         dbId: table && table.db_id,
         tableId: table.id,
@@ -204,86 +202,61 @@ export default class SegmentDetail extends Component {
           error={loadingError}
         >
           {() => (
-            <div className="wrapper">
-              <div className="pl4 pr3 pt4 mb4 mb1 bg-white rounded bordered">
-                <List>
-                  <li>
-                    <div className={S.detail}>
-                      <div className={S.detailBody}>
-                        <div>
-                          <div className={S.detailTitle}>
-                            {t`Table this is based on`}
-                          </div>
-                          {table && (
-                            <div>
-                              <Link
-                                className="text-brand text-bold text-paragraph"
-                                to={`/reference/databases/${table.db_id}/tables/${table.id}`}
-                              >
-                                <span className="pt1">
-                                  {table.display_name}
-                                </span>
-                              </Link>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+            <div className="wrapper wrapper--trim">
+              <List>
+                <li className="relative">
+                  <Detail
+                    id="description"
+                    name={t`Description`}
+                    description={entity.description}
+                    placeholder={t`No description yet`}
+                    isEditing={isEditing}
+                    field={description}
+                  />
+                </li>
+                <li className="relative">
+                  <Detail
+                    id="points_of_interest"
+                    name={t`Why this Segment is interesting`}
+                    description={entity.points_of_interest}
+                    placeholder={t`Nothing interesting yet`}
+                    isEditing={isEditing}
+                    field={points_of_interest}
+                  />
+                </li>
+                <li className="relative">
+                  <Detail
+                    id="caveats"
+                    name={t`Things to be aware of about this Segment`}
+                    description={entity.caveats}
+                    placeholder={t`Nothing to be aware of yet`}
+                    isEditing={isEditing}
+                    field={caveats}
+                  />
+                </li>
+                {table && !isEditing && (
                   <li className="relative">
-                    <Detail
-                      id="description"
-                      name={t`Description`}
-                      description={entity.description}
-                      placeholder={t`No description yet`}
-                      isEditing={isEditing}
-                      field={description}
+                    <Formula
+                      type="segment"
+                      entity={entity}
+                      table={table}
+                      isExpanded={isFormulaExpanded}
+                      expandFormula={expandFormula}
+                      collapseFormula={collapseFormula}
                     />
                   </li>
+                )}
+                {!isEditing && (
                   <li className="relative">
-                    <Detail
-                      id="points_of_interest"
-                      name={t`Why this Segment is interesting`}
-                      description={entity.points_of_interest}
-                      placeholder={t`Nothing interesting yet`}
-                      isEditing={isEditing}
-                      field={points_of_interest}
+                    <UsefulQuestions
+                      questions={interestingQuestions(
+                        this.props.table,
+                        this.props.entity,
+                      )}
                     />
                   </li>
-                  <li className="relative">
-                    <Detail
-                      id="caveats"
-                      name={t`Things to be aware of about this Segment`}
-                      description={entity.caveats}
-                      placeholder={t`Nothing to be aware of yet`}
-                      isEditing={isEditing}
-                      field={caveats}
-                    />
-                  </li>
-                  {!isEditing && (
-                    <li className="relative">
-                      <UsefulQuestions
-                        questions={interestingQuestions(
-                          this.props.table,
-                          this.props.entity,
-                        )}
-                      />
-                    </li>
-                  )}
-                  {table && !isEditing && (
-                    <li className="relative mb4">
-                      <Formula
-                        type="segment"
-                        entity={entity}
-                        table={table}
-                        isExpanded={isFormulaExpanded}
-                        expandFormula={expandFormula}
-                        collapseFormula={collapseFormula}
-                      />
-                    </li>
-                  )}
-                </List>
-              </div>
+                )}
+              </List>
             </div>
           )}
         </LoadingAndErrorWrapper>

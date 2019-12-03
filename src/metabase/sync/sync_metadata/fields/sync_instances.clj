@@ -1,5 +1,5 @@
 (ns metabase.sync.sync-metadata.fields.sync-instances
-  "Logic for syncing the instances of `Field` in the Metabase application DB with the set of Fields in the DB metadata.
+  "Logic for syncing the instances of `Field` in the Kenga Analytics application DB with the set of Fields in the DB metadata.
   Responsible for creating new instances of `Field` as needed, and marking existing ones as active or inactive as
   needed. Recursively handles nested Fields.
 
@@ -28,7 +28,7 @@
 ;;; +----------------------------------------------------------------------------------------------------------------+
 
 (s/defn ^:private matching-inactive-fields :- (s/maybe [i/FieldInstance])
-  "Return inactive Metabase Fields that match any of the Fields described by `new-field-metadatas`, if any such Fields
+  "Return inactive Kenga Analytics Fields that match any of the Fields described by `new-field-metadatas`, if any such Fields
   exist."
   [table :- i/TableInstance, new-field-metadatas :- [i/TableMetadataField], parent-id :- common/ParentID]
   (when (seq new-field-metadatas)
@@ -54,7 +54,7 @@
          :description   field-comment}))))
 
 (s/defn ^:private create-or-reactivate-fields! :- (s/maybe [i/FieldInstance])
-  "Create (or reactivate) Metabase Field object(s) for any Fields in `new-field-metadatas`. Does *NOT* recursively
+  "Create (or reactivate) Kenga Analytics Field object(s) for any Fields in `new-field-metadatas`. Does *NOT* recursively
   handle nested Fields."
   [table :- i/TableInstance, new-field-metadatas :- [i/TableMetadataField], parent-id :- common/ParentID]
   (let [fields-to-reactivate (matching-inactive-fields table new-field-metadatas parent-id)]

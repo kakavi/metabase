@@ -7,7 +7,7 @@ Data in isolation is rarely all that useful. One of the best ways to add context
 - New users per day vs. returning users per day.
 - Orders per day from a few different product lines.
 
-### In Metabase there are two main ways to get data side-by-side.
+### In Kenga Analytics there are two main ways to get data side-by-side.
 
 1. Combining two existing saved questions that share a common dimension (like time) on a dashboard
 
@@ -27,11 +27,11 @@ If you already have two or more saved questions you’d like to compare, and the
 
 ![multiseriestrigger](images/MultiSeriesTrigger.png)
 
-3. In the Edit Data modal you’ll see the original question, and on the right you’ll see a list of compatible questions you can choose from. Check the box next to any questions you’d like to see side-by-side with the original, and Metabase will add it to the same chart.
+3. In the Edit Data modal you’ll see the original question, and on the right you’ll see a list of compatible questions you can choose from. Check the box next to any questions you’d like to see side-by-side with the original, and Kenga Analytics will add it to the same chart.
 
 ![multiseriesmodal1](images/MultiSeriesModal1.png)
 
-The X and Y axis will automatically update if necessary and Metabase will create a legend using the existing card titles to help you understand which question maps to which series on the chart. Repeat this process as many times as you need.
+The X and Y axis will automatically update if necessary and Kenga Analytics will create a legend using the existing card titles to help you understand which question maps to which series on the chart. Repeat this process as many times as you need.
 
 To remove a series either uncheck the box, or click the x next to the title in the legend above the chart.
 
@@ -43,25 +43,25 @@ Once you have your chart looking how you’d like, hit done and your changes wil
 
 #### A quick note about SQL based questions.
 
-Metabase has less information about SQL based questions, so we cannot guarantee if they can be added reliably. You'll see a little warning sign next to SQL questions to indicate this and when you try adding them just be aware it may not work.
+Kenga Analytics has less information about SQL based questions, so we cannot guarantee if they can be added reliably. You'll see a little warning sign next to SQL questions to indicate this and when you try adding them just be aware it may not work.
 
 ### Combining Number charts
 
-If you need to compare single numbers and get a sense of how they differ, Metabase also lets you turn multiple Number charts into a bar chart. To do this, follow the same process outlined above. While editing a dashboard, click “edit data” on the Number chart of your choice and then select the other saved question(s) you’d like to see represented on the bar chart. (At Metabase, we use this to create simple funnel visualizations.)
+If you need to compare single numbers and get a sense of how they differ, Kenga Analytics also lets you turn multiple Number charts into a bar chart. To do this, follow the same process outlined above. While editing a dashboard, click “edit data” on the Number chart of your choice and then select the other saved question(s) you’d like to see represented on the bar chart. (At Kenga Analytics, we use this to create simple funnel visualizations.)
 
 ### Creating a multi-series visualization in the query builder.
 
 If you’re creating a new question you can also view the result as a multi-series visualization. To do this you’ll need to summarize and add two groupings to your question.
 
-As an example, we might want to see which website or service is referring the most people to our website. (In the sample dataset that ships with Metabase this would involve using the `Source` and `Created At` columns of the `People` table.)
+As an example, we might want to see which website or service is referring the most people to our website. (In the sample dataset that ships with Kenga Analytics this would involve using the `Source` and `Created At` columns of the `People` table.)
 
 To do this we’d click the Summarize button, and then add `Source` and `Created At` as groupings (the `count of rows` metric that we want is already selected by default). [Learn more about asking questions](04-asking-questions.md).
 
-Metabase will automatically display a multi-series line chart visualization of how each referrer has performed for us.
+Kenga Analytics will automatically display a multi-series line chart visualization of how each referrer has performed for us.
 
 ![multiseriesquerybuilder](images/MultiSeriesQueryBuilder.png)
 
-It’s worth noting that at this time you won’t be able to add another saved question to multi-series visualizations made in this fashion. Metabase can only visualize up to 20 values of a dimension at once, so you may need to filter the values if you're selecting a field that contains a lot of values like "State."
+It’s worth noting that at this time you won’t be able to add another saved question to multi-series visualizations made in this fashion. Kenga Analytics can only visualize up to 20 values of a dimension at once, so you may need to filter the values if you're selecting a field that contains a lot of values like "State."
 
 ### Other multiple series tips
 

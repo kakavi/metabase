@@ -1,6 +1,6 @@
 import {
   getFieldType,
-  TEMPORAL,
+  DATE_TIME,
   STRING,
   STRING_LIKE,
   NUMBER,
@@ -15,15 +15,15 @@ import { TYPE } from "metabase/lib/types";
 describe("schema_metadata", () => {
   describe("getFieldType", () => {
     it("should know a date", () => {
-      expect(getFieldType({ base_type: TYPE.Date })).toEqual(TEMPORAL);
-      expect(getFieldType({ base_type: TYPE.DateTime })).toEqual(TEMPORAL);
-      expect(getFieldType({ base_type: TYPE.Time })).toEqual(TEMPORAL);
+      expect(getFieldType({ base_type: TYPE.Date })).toEqual(DATE_TIME);
+      expect(getFieldType({ base_type: TYPE.DateTime })).toEqual(DATE_TIME);
+      expect(getFieldType({ base_type: TYPE.Time })).toEqual(DATE_TIME);
       expect(getFieldType({ special_type: TYPE.UNIXTimestampSeconds })).toEqual(
-        TEMPORAL,
+        DATE_TIME,
       );
       expect(
         getFieldType({ special_type: TYPE.UNIXTimestampMilliseconds }),
-      ).toEqual(TEMPORAL);
+      ).toEqual(DATE_TIME);
     });
     it("should know a number", () => {
       expect(getFieldType({ base_type: TYPE.BigInteger })).toEqual(NUMBER);

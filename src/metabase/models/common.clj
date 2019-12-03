@@ -2,7 +2,7 @@
 
 ;; TODO - why is this here? Doesn't seem like the right place for it
 (def timezones
-  "The different timezones supported by Metabase.
+  "The different timezones supported by Kenga Analytics.
    Presented as options for the `report-timezone` Setting in the admin panel."
   ["Africa/Algiers"
    "Africa/Cairo"

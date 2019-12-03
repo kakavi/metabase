@@ -1,13 +1,13 @@
-## Copying contents of one Metabase instance to another
+## Copying contents of one Kenga Analytics instance to another
 
-Once you really get rolling with Metabase it's often the case that you'll have more than one instance of it spun up. You might have a couple of testing or development instances and a few production ones, or maybe you have a separate instance per office or region.
+Once you really get rolling with Kenga Analytics it's often the case that you'll have more than one instance of it spun up. You might have a couple of testing or development instances and a few production ones, or maybe you have a separate instance per office or region.
 
-To help you out in situations like this, Metabase has a serialization feature which lets you create a snapshot, called a dump, of the contents of a Metabase instance that can then be loaded into another instance. This lets you do things like create a set of dashboards and charts in one Metabase instance and then easily copy those items to a number of other Metabase instances. You could also use this feature to enable a staging-to-production workflow for important dashboards or reports by dumping from a staging instance of Metabase and then loading that dump into your production instance(s). You can even put the dump files into version control and audit changes to them, as the YAML files contained within the dump are pretty readable.
+To help you out in situations like this, Kenga Analytics has a serialization feature which lets you create a snapshot, called a dump, of the contents of a Kenga Analytics instance that can then be loaded into another instance. This lets you do things like create a set of dashboards and charts in one Metabase instance and then easily copy those items to a number of other Metabase instances. You could also use this feature to enable a staging-to-production workflow for important dashboards or reports by dumping from a staging instance of Metabase and then loading that dump into your production instance(s). You can even put the dump files into version control and audit changes to them, as the YAML files contained within the dump are pretty readable.
 
 
 ### What gets dumped and loaded
 
-**Currently, dumps consist of the following Metabase artifacts:**
+**Currently, dumps consist of the following Kenga Analytics artifacts:**
 
 * Collections
 * Dashboards
@@ -32,19 +32,19 @@ To help you out in situations like this, Metabase has a serialization feature wh
 
 ### Before creating or loading a dump
 
-If your instance is currently running, you will need to stop it first before creating or loading a dump, unless your Metabase application database supports concurrent reads. The default application database type, H2, does not.
+If your instance is currently running, you will need to stop it first before creating or loading a dump, unless your Kenga Analytics application database supports concurrent reads. The default application database type, H2, does not.
 
 ### Creating a data dump
 
-To create a dump of a Metabase instance, use the following command in your terminal:
+To create a dump of a Kenga Analytics instance, use the following command in your terminal:
 
 `java -jar metabase.jar dump [dump_name] --user [example@example.com]`
 
-The optional `--user` flag is used to specify a default administrator account for cases when this dump is loaded into a blank Metabase instance. This user will also be marked as the creator of all artifacts that are copied over to the instance. This user's personal collection and its contents will also be included in the data dump. If this flag isn't specified, Metabase will assume that the instance into which you're loading already has an admin user (but the load will fail if there isn't an admin user).
+The optional `--user` flag is used to specify a default administrator account for cases when this dump is loaded into a blank Kenga Analytics instance. This user will also be marked as the creator of all artifacts that are copied over to the instance. This user's personal collection and its contents will also be included in the data dump. If this flag isn't specified, Kenga Analytics will assume that the instance into which you're loading already has an admin user (but the load will fail if there isn't an admin user).
 
 ### Loading a dump
 
-Currently, you can only load dumps into a Metabase instance that were created from the same version of Metabase. To load a dump into a Metabase instance, use the following command, where `[my_dump]` is the path to the dump you want to load:
+Currently, you can only load dumps into a Kenga Analytics instance that were created from the same version of Kenga Analytics. To load a dump into a Kenga Analytics instance, use the following command, where `[my_dump]` is the path to the dump you want to load:
 
 `java -jar metabase.jar load [my_dump] --mode [skip/update] --on-error [continue/abort]`
 

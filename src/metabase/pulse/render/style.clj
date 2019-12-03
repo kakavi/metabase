@@ -16,7 +16,7 @@
                   (str (name k) ": " v ";"))))
 
 (def ^:const color-brand
-  "Classic Metabase blue."
+  "Classic Kenga Analytics blue."
   "#2D86D4")
 
 (def ^:const color-purple
@@ -66,7 +66,7 @@
 ;; don't try to improve the code and make this a plain variable, in EE it's customizable which is why it's a function.
 ;; Too much of a hassle to have it be a fn in one version of the code an a constant in another
 (defn primary-color
-  "Primary color to use in Pulses. For CE, this is always the classic Metabase blue."
+  "Primary color to use in Pulses. For CE, this is always the classic Kenga Analytics blue."
   []
   color-brand)
 

@@ -4,7 +4,7 @@ X-rays are a fast and easy way to get automatic insights and explorations of you
 
 ### Viewing x-rays by clicking on charts or tables
 
-One great way to explore your data in general in Metabase is to click on points of interest in charts or tables, which shows you ways to further explore that point. We've added x-rays to this action menu, so if you for example find a point on your line chart that seems extra interesting, give it a click and x-ray it! We think you'll like what you see.
+One great way to explore your data in general in Kenga Analytics is to click on points of interest in charts or tables, which shows you ways to further explore that point. We've added x-rays to this action menu, so if you for example find a point on your line chart that seems extra interesting, give it a click and x-ray it! We think you'll like what you see.
 
 ![X-ray action in drill-through menu](images/x-rays/drill-through.png)
 
@@ -14,7 +14,7 @@ When you click on a bar or point on a chart, you can now also choose the Compare
 
 ![Compare menu](images/x-rays/x-ray-compare-popover.png)
 
-If you're already looking at an x-ray of a table or a segment, Metabase will also give you the option to compare the current table or segment to other segments of the table, if there are any. This is a very fast, powerful way to see, for example, how different segments of your users or orders compare to each other.
+If you're already looking at an x-ray of a table or a segment, Kenga Analytics will also give you the option to compare the current table or segment to other segments of the table, if there are any. This is a very fast, powerful way to see, for example, how different segments of your users or orders compare to each other.
 
 ![Comparison](images/x-rays/x-ray-comparison-1.png)
 ![Comparison](images/x-rays/x-ray-comparison-2.png)
@@ -33,7 +33,7 @@ From the Browse Data page, you can also click on `Learn about our data` to view 
 
 ### Exploring newly added datasets
 
-If you're an administrator, when you first connect a database to Metabase, Metabot will offer to show you some automated explorations of your newly-connected data.
+If you're an administrator, when you first connect a database to Kenga Analytics, Metabot will offer to show you some automated explorations of your newly-connected data.
 
 ![X-ray example](images/x-rays/suggestions.png)
 
@@ -54,7 +54,7 @@ Depending on the x-ray you're currently viewing, you'll see suggestions that wil
 
 ### Saving x-rays
 
-If you come across an x-ray that's particularly interesting, you can save it as a dashboard by clicking the green Save button. Metabase will create a new dashboard and put it and all of its charts in a new collection, and will save this new collection wherever you choose.
+If you come across an x-ray that's particularly interesting, you can save it as a dashboard by clicking the green Save button. Kenga Analytics will create a new dashboard and put it and all of its charts in a new collection, and will save this new collection wherever you choose.
 
 ### Disabling x-rays
 

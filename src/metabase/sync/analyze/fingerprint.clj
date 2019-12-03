@@ -9,13 +9,12 @@
              [util :as u]]
             [metabase.db.metadata-queries :as metadata-queries]
             [metabase.models.field :refer [Field]]
-            [metabase.query-processor.timezone :as qp.timezone]
             [metabase.sync
              [interface :as i]
              [util :as sync-util]]
             [metabase.sync.analyze.fingerprint.fingerprinters :as f]
             [metabase.util
-             [i18n :refer [trs]]
+             [date :as du]
              [schema :as su]]
             [redux.core :as redux]
             [schema.core :as s]
@@ -23,7 +22,7 @@
 
 (s/defn ^:private save-fingerprint!
   [field :- i/FieldInstance, fingerprint :- (s/maybe i/Fingerprint)]
-  (log/debug (trs "Saving fingerprint for {0}" (sync-util/name-for-logging field)))
+  (log/debug (format "Saving fingerprint for %s" (sync-util/name-for-logging field)))
   ;; All Fields who get new fingerprints should get marked as having the latest fingerprint version, but we'll
   ;; clear their values for `last_analyzed`. This way we know these fields haven't "completed" analysis for the
   ;; latest fingerprints.
@@ -167,10 +166,9 @@
   [database :- i/DatabaseInstance
    tables :- [i/TableInstance]
    log-progress-fn]
-  ;; database timezone is bound so it can be used in date coercion logic
-  (qp.timezone/with-database-timezone-id (:timezone database)
+  (du/with-effective-timezone database
     (apply merge-with + (for [table tables
-                              :let  [result (fingerprint-fields! table)]]
+                              :let [result (fingerprint-fields! table)]]
                           (do
                             (log-progress-fn "fingerprint-fields" table)
                             result)))))

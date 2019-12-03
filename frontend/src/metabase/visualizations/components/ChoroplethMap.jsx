@@ -317,7 +317,6 @@ export default class ChoroplethMap extends Component {
         gridSize={gridSize}
         hovered={hovered}
         onHoverChange={onHoverChange}
-        isDashboard={this.props.isDashboard}
       >
         {projection ? (
           <LegacyChoropleth

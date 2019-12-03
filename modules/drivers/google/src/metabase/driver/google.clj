@@ -53,7 +53,7 @@
   "Creates the application name string, separated out from the `def` below so it's testable with different values"
   [{:keys [tag ^String hash branch]}]
   (let [encoded-hash (some-> hash (.getBytes "UTF-8") codec/base64-encode)]
-    (format "Metabase/%s (GPN:Metabse; %s %s)"
+    (format "Kenga Analytics/%s (GPN:Kenga Analytics; %s %s)"
             (or tag "?")
             (or encoded-hash "?")
             (or branch "?"))))

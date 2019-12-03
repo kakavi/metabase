@@ -1,6 +1,6 @@
 ## A Short Overview of Databases
 
-Before you jump into working with Metabase, it's helpful to know a few key database terms.
+Before you jump into working with Kenga Analytics, it's helpful to know a few key database terms.
 
 #### Tables
 
@@ -66,7 +66,7 @@ For example, in our hypothetical car booking app, we could connect each reservat
 | 11  | John  | 25  |
 | 12  | Jenny | 31  |
 
-If we wanted to analyze our hypothetical app's database with Metabase, we could ask a question, like:
+If we wanted to analyze our hypothetical app's database with Kenga Analytics, we could ask a question, like:
 
     What's the average age of all customers who made reservations in February of 2015?
 
@@ -76,4 +76,4 @@ To do this, we’d open up the Reservation table, add a filter to only look at r
 
 ## Next: Asking questions
 
-Now that we have a shared vocabulary and a basic understanding of databases, let's learn more about [exploring in Metabase](03-basic-exploration.md)
+Now that we have a shared vocabulary and a basic understanding of databases, let's learn more about [exploring in Kenga Analytics](03-basic-exploration.md)

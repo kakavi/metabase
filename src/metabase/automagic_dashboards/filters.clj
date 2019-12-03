@@ -50,12 +50,11 @@
                  identity)
        (filter field-reference?)))
 
-;; TODO — this function name is inaccurate, rename to `temporal?`
 (defn datetime?
-  "Does `field` represent a temporal value, i.e. a date, time, or datetime?"
+  "Is `field` a datetime?"
   [field]
   (and (not ((disj metabase.util.date/date-extract-units :year) (:unit field)))
-       (or (isa? (:base_type field) :type/Temporal)
+       (or (isa? (:base_type field) :type/DateTime)
            (field/unix-timestamp? field))))
 
 (defn- interestingness
@@ -65,8 +64,8 @@
     (some-> fingerprint :global :distinct-count (> 20)) dec
     ((descendants :type/Category) special_type)         inc
     (field/unix-timestamp? field)                       inc
-    (isa? base_type :type/Temporal)                     inc
-    ((descendants :type/Temporal) special_type)         inc
+    (isa? base_type :type/DateTime)                     inc
+    ((descendants :type/DateTime) special_type)         inc
     (isa? special_type :type/CreationTimestamp)         inc
     (#{:type/State :type/Country} special_type)         inc))
 

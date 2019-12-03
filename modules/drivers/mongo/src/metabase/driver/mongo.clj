@@ -18,37 +18,27 @@
              [command :as cmd]
              [conversion :as conv]
              [db :as mdb]]
-            [schema.core :as s]
-            [taoensso.nippy :as nippy])
+            [schema.core :as s])
   (:import com.mongodb.DB
-           org.bson.BsonUndefined
-           org.bson.types.ObjectId))
+           org.bson.BsonUndefined))
 
 ;; JSON Encoding (etc.)
 
 ;; Encode BSON undefined like `nil`
 (json.generate/add-encoder org.bson.BsonUndefined json.generate/encode-nil)
 
-(nippy/extend-freeze ObjectId :mongodb/ObjectId
-  [^ObjectId oid data-output]
-  (.writeUTF data-output (.toHexString oid)))
-
-(nippy/extend-thaw :mongodb/ObjectId
-  [data-input]
-  (ObjectId. (.readUTF data-input)))
-
 (driver/register! :mongo)
 
-(defmethod driver/can-connect? :mongo
-  [_ details]
+;;; ## MongoDriver
+
+(defmethod driver/can-connect? :mongo [_ details]
   (with-mongo-connection [^DB conn, details]
     (= (float (-> (cmd/db-stats conn)
                   (conv/from-db-object :keywordize)
                   :ok))
        1.0)))
 
-(defmethod driver/humanize-connection-error-message :mongo
-  [_ message]
+(defmethod driver/humanize-connection-error-message :mongo [_ message]
   (condp re-matches message
     #"^Timed out after \d+ ms while waiting for a server .*$"
     (driver.common/connection-error-messages :cannot-connect-check-host-and-port)
@@ -78,8 +68,7 @@
 
 (declare update-field-attrs)
 
-(defmethod driver/sync-in-context :mongo
-  [_ database do-sync-fn]
+(defmethod driver/sync-in-context :mongo [_ database do-sync-fn]
   (with-mongo-connection [_ database]
     (do-sync-fn)))
 
@@ -123,11 +112,10 @@
                                  (find-nested-fields field-value nested-fields)
                                  nested-fields)))))
 
-;; TODO - use `driver.common/class->base-type` to implement this functionality
 (s/defn ^:private ^Class most-common-object-type :- (s/maybe Class)
   "Given a sequence of tuples like [Class <number-of-occurances>] return the Class with the highest number of
   occurances. The basic idea here is to take a sample of values for a Field and then determine the most common type
-  for its values, and use that as the Metabase base type. For example if we have a Field called `zip_code` and it's a
+  for its values, and use that as the Kenga Analytics base type. For example if we have a Field called `zip_code` and it's a
   number 90% of the time and a string the other 10%, we'll just call it a `:type/Number`."
   [field-types :- [(s/pair (s/maybe Class) "Class", s/Int "Int")]]
   (->> field-types
@@ -154,8 +142,7 @@
       (:nested-fields field-info) (assoc :nested-fields (set (for [field (keys (:nested-fields field-info))]
                                                                (describe-table-field field (field (:nested-fields field-info)))))))))
 
-(defmethod driver/describe-database :mongo
-  [_ database]
+(defmethod driver/describe-database :mongo [_ database]
   (with-mongo-connection [^com.mongodb.DB conn database]
     {:tables (set (for [collection (disj (mdb/get-collection-names conn) "system.indexes")]
                     {:schema nil, :name collection}))}))
@@ -180,8 +167,7 @@
     (catch Throwable t
       (log/error (format "Error introspecting collection: %s" (:name table)) t))))
 
-(defmethod driver/describe-table :mongo
-  [_ database table]
+(defmethod driver/describe-table :mongo [_ database table]
   (with-mongo-connection [^com.mongodb.DB conn database]
     (let [column-info (table-sample-column-info conn table)]
       {:schema nil
@@ -192,10 +178,8 @@
 (defmethod driver/supports? [:mongo :basic-aggregations] [_ _] true)
 (defmethod driver/supports? [:mongo :nested-fields]      [_ _] true)
 
-(defmethod driver/mbql->native :mongo
-  [_ query]
+(defmethod driver/mbql->native :mongo [_ query]
   (qp/mbql->native query))
 
-(defmethod driver/execute-query :mongo
-  [_ query]
+(defmethod driver/execute-query :mongo [_ query]
   (qp/execute-query query))

@@ -7,22 +7,22 @@
   (atom 0))
 
 (defn complete?
-  "Is Metabase initialized and ready to be served?"
+  "Is Kenga Analytics initialized and ready to be served?"
   []
   (= @progress-atom 1.0))
 
 (defn progress
-  "Get the current progress of Metabase initialization."
+  "Get the current progress of Kenga Analytics initialization."
   []
   @progress-atom)
 
 (defn set-progress!
-  "Update the Metabase initialization progress to a new value, a floating-point value between `0` and `1`."
+  "Update the Kenga Analytics initialization progress to a new value, a floating-point value between `0` and `1`."
   [^Float new-progress]
   {:pre [(float? new-progress) (<= 0.0 new-progress 1.0)]}
   (reset! progress-atom new-progress))
 
 (defn set-complete!
-  "Complete the Metabase initialization by setting its progress to 100%."
+  "Complete the Kenga Analytics initialization by setting its progress to 100%."
   []
   (set-progress! 1.0))

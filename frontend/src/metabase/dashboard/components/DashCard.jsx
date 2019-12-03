@@ -242,7 +242,6 @@ const ChartSettingsButton = ({ series, onReplaceAllVisualizationSettings }) => (
     triggerClasses="text-light text-medium-hover cursor-pointer flex align-center flex-no-shrink mr1 drag-disabled"
   >
     <ChartSettingsWithState
-      className="spread"
       series={series}
       onChange={onReplaceAllVisualizationSettings}
       isDashboard

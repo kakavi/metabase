@@ -1,6 +1,6 @@
-# Which databases does Metabase support?
+# Which databases does Kenga Analytics support?
 
-The following databases are officially supported by Metabase:
+The following databases are officially supported by Kenga Analytics:
 
 * BigQuery
 * Druid

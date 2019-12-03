@@ -34,8 +34,8 @@
      "plural-forms" "nplurals=2; plural=(n != 1);"}
 
     "translations"
-    {"" {"Metabase" {"msgid"  "Metabase"
-                     "msgstr" ["Metabase"]}}}}))
+    {"" {"Kenga Analytics" {"msgid"  "Kenga Analytics"
+                     "msgstr" ["Kenga Analytics"]}}}}))
 
 (defn- load-localization* [locale]
   (or
@@ -62,7 +62,7 @@
   (try
     (stencil/render-file path variables)
     (catch IllegalArgumentException e
-      (let [message (trs "Failed to load template ''{0}''. Did you remember to build the Metabase frontend?" path)]
+      (let [message (trs "Failed to load template ''{0}''. Did you remember to build the Kenga Analytics frontend?" path)]
         (log/error e message)
         (throw (Exception. message e))))))
 
@@ -86,7 +86,7 @@
     {:initJS (load-inline-js "init")}))
 
 (defn- entrypoint
-  "Repsonse that serves up an entrypoint into the Metabase application, e.g. `index.html`."
+  "Repsonse that serves up an entrypoint into the Kenga Analytics application, e.g. `index.html`."
   [entrypoint-name embeddable? {:keys [uri]} respond raise]
   (respond
     (-> (resp/response (if (init-status/complete?)

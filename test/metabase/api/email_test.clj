@@ -1,8 +1,7 @@
 (ns metabase.api.email-test
-  (:require [clojure.test :refer :all]
+  (:require [expectations :refer :all]
             [metabase.models.setting :as setting]
-            [metabase.test.data.users :refer [user->client]]
-            [metabase.test.util :as tu]))
+            [metabase.test.data.users :refer [user->client]]))
 
 (defn- email-settings
   []
@@ -22,28 +21,30 @@
    :email-from-address  "eating@hungry.com"})
 
 ;; PUT /api/email - check updating email settings
-(deftest update-email-settings-test
-  (testing "PUT /api/email"
-    (tu/discard-setting-changes [email-smtp-host email-smtp-port email-smtp-security email-smtp-username
-                                 email-smtp-password email-from-address]
+(expect
+  default-email-settings
+  (let [orig-settings (email-settings)]
+    (try
       ((user->client :crowberto) :put 200 "email" default-email-settings)
-      (is (= default-email-settings
-             (email-settings))))))
+      (email-settings)
+      (finally
+        (setting/set-many! orig-settings)))))
 
-;;
-(deftest clear-email-settings-test
-  (testing "DELETE /api/email"
-    (tu/discard-setting-changes [email-smtp-host email-smtp-port email-smtp-security email-smtp-username
-                                 email-smtp-password email-from-address]
+;; DELETE /api/email - check clearing email settings
+(expect
+  [default-email-settings
+   {:email-smtp-host     nil
+    :email-smtp-port     nil
+    :email-smtp-security "none"
+    :email-smtp-username nil
+    :email-smtp-password nil
+    :email-from-address  "notifications@metabase.com"}]
+  (let [orig-settings (email-settings)]
+    (try
       ((user->client :crowberto) :put 200 "email" default-email-settings)
       (let [new-email-settings (email-settings)]
         ((user->client :crowberto) :delete 204 "email")
-        (is (= default-email-settings
-               new-email-settings))
-        (is (= {:email-smtp-host     nil
-                :email-smtp-port     nil
-                :email-smtp-security "none"
-                :email-smtp-username nil
-                :email-smtp-password nil
-                :email-from-address  "notifications@metabase.com"}
-               (email-settings)))))))
+        [new-email-settings
+         (email-settings)])
+      (finally
+        (setting/set-many! orig-settings)))))

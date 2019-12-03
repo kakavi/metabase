@@ -1,15 +1,15 @@
-## White labeling Metabase
+## White labeling Kenga Analytics
 
-White labeling lets you customize the way Metabase looks so that it matches your company’s branding. Go to the Admin Panel and click on the White Labeling section to start customizing things. Here’s what you can do:
+White labeling lets you customize the way Kenga Analytics looks so that it matches your company’s branding. Go to the Admin Panel and click on the White Labeling section to start customizing things. Here’s what you can do:
 
 ### Change the name of the application
-You can change every place in the app that says “Metabase” to something like “Acme Analytics,” or whatever you want to call your Metabase app.
+You can change every place in the app that says “Kenga Analytics” to something like “Acme Analytics,” or whatever you want to call your Kenga Analytics app.
 
 ### Logo
-You can replace Metabase’s familiar, tasteful, inspired-yet-not-threateningly-avant-garde dotted M logo with your very own. For things to work best, the logo you upload should be an SVG file that looks good when it’s around 60px tall. (In other words, ask the nearest designer for help.)
+You can replace Kenga Analytic’s familiar, tasteful, inspired-yet-not-threateningly-avant-garde dotted M logo with your very own. For things to work best, the logo you upload should be an SVG file that looks good when it’s around 60px tall. (In other words, ask the nearest designer for help.)
 
 ### Change the color palette
-You can customize the colors that Metabase uses throughout the app:
+You can customize the colors that Kenga Analytics uses throughout the app:
 
 * **Primary color:** by default, this is the lovely blue that is used for the nav bar, links, buttons, and more.
 * **Nav bar color:** you can optionally specify a separate color for the nav bar; otherwise it defaults to the Primary color.

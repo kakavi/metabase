@@ -60,10 +60,10 @@
 ;; out from the ns declaration when running `cljr-clean-ns`. Plus as a bonus in the future we could add additional
 ;; validations to these, e.g. requiring that a Field have a base_type
 
-(def DatabaseInstance             "Schema for a valid instance of a Metabase Database." (class Database))
-(def TableInstance                "Schema for a valid instance of a Metabase Table."    (class Table))
-(def FieldInstance                "Schema for a valid instance of a Metabase Field."    (class Field))
-(def ResultColumnMetadataInstance "Schema for a valid instance of a Metabase Field."    (class {}))
+(def DatabaseInstance             "Schema for a valid instance of a Kenga Analytics Database." (class Database))
+(def TableInstance                "Schema for a valid instance of a Kenga Analytics Table."    (class Table))
+(def FieldInstance                "Schema for a valid instance of a Kenga Analytics Field."    (class Field))
+(def ResultColumnMetadataInstance "Schema for a valid instance of a Kenga Analytics Field."    (class {}))
 
 
 ;;; +----------------------------------------------------------------------------------------------------------------+
@@ -114,8 +114,8 @@
    (s/optional-key :percent-email)  (s/maybe Percent)
    (s/optional-key :average-length) s/Num})
 
-(def TemporalFingerprint
-  "Schema for fingerprint information for Fields deriving from `:type/Temporal`."
+(def DateTimeFingerprint
+  "Schema for fingerprint information for Fields deriving from `:type/DateTime`."
   {(s/optional-key :earliest) (s/maybe s/Str)
    (s/optional-key :latest)   (s/maybe s/Str)})
 
@@ -124,9 +124,7 @@
   (s/constrained
    {(s/optional-key :type/Number)   NumberFingerprint
     (s/optional-key :type/Text)     TextFingerprint
-    ;; temporal fingerprints are keyed by `:type/DateTime` for historical reasons. `DateTime` used to be the parent of
-    ;; all temporal MB types.
-    (s/optional-key :type/DateTime) TemporalFingerprint}
+    (s/optional-key :type/DateTime) DateTimeFingerprint}
    (fn [m]
      (= 1 (count (keys m))))
    "Type-specific fingerprint with exactly one key"))

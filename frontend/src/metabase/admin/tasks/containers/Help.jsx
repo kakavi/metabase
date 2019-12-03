@@ -35,13 +35,13 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Severity**
-How severe an issue is this bug to you? Is this annoying, blocking some users, blocking an upgrade or blocking your usage of Metabase entirely?
+How severe an issue is this bug to you? Is this annoying, blocking some users, blocking an upgrade or blocking your usage of Kenga Analytics entirely?
 Note: the more honest and specific you are here the more we will take you seriously.
 
 **Additional context**
 Add any other context about the problem here.
 
-**Metabase Diagnostic Info**
+**Kenga Analytics Diagnostic Info**
 `;
 
 function githubIssueLink(bugReportDetails) {
@@ -104,13 +104,13 @@ export default class Help extends Component {
         <Box my={2} style={{ maxWidth: "468px" }}>
           <ol>
             <HelpLink
-              title="Metabase Documentation"
+              title="Kenga Analytics Documentation"
               description="Includes a troubleshooting guide"
               link={MetabaseSettings.docsUrl()}
             />
             <HelpLink
-              title="Post on the Metabase support forum"
-              description="A community forum for all things Metabase"
+              title="Post on the Kenga Analytics support forum"
+              description="A community forum for all things Kenga Analytics"
               link={discourseLink(detailString)}
             />
             <HelpLink

@@ -150,12 +150,12 @@ export default class DatabaseSchedulingForm extends Component {
 
               <div className="mt4">
                 <h4 className="text-bold text-default text-uppercase">{t`Scanning for Filter Values`}</h4>
-                <p className="text-paragraph text-measure">{t`Metabase can scan the values present in each
+                <p className="text-paragraph text-measure">{t`Kenga Analytics can scan the values present in each
                                     field in this database to enable checkbox filters in dashboards and questions. This
                                     can be a somewhat resource-intensive process, particularly if you have a very large
                                     database.`}</p>
 
-                <h3>{t`When should Metabase automatically scan and cache field values?`}</h3>
+                <h3>{t`When should Kenga Analytics automatically scan and cache field values?`}</h3>
                 <ol className="bordered shadowed mt3">
                   <li className="border-bottom">
                     <SyncOption
@@ -195,7 +195,7 @@ export default class DatabaseSchedulingForm extends Component {
                       select={() => this.setIsFullSyncIsOnDemand(false, true)}
                     >
                       <p className="text-paragraph text-measure">
-                        {t`When a user adds a new filter to a dashboard or a SQL question, Metabase will
+                        {t`When a user adds a new filter to a dashboard or a SQL question, Kenga Analytics will
                                                 scan the field(s) mapped to that filter in order to show the list of selectable values.`}
                       </p>
                     </SyncOption>

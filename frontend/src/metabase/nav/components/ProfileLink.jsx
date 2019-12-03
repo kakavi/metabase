@@ -69,7 +69,7 @@ export default class ProfileLink extends Component {
         event: `Navbar;Profile Dropdown;About ${tag}`,
       },
       {
-        title: t`About Metabase`,
+        title: t`About Kenga Analytics`,
         icon: null,
         action: () => this.openModal("about"),
         event: `Navbar;Profile Dropdown;About ${tag}`,
@@ -106,7 +106,7 @@ export default class ProfileLink extends Component {
                 <LogoIcon width={48} height={48} />
               </div>
               <h2 style={{ fontSize: "1.75em" }} className="text-dark">
-                {t`Thanks for using`} Metabase!
+                {t`Thanks for using`} Kenga Analytics!
               </h2>
               <div className="pt2">
                 <h3 className="text-dark mb1">
@@ -131,10 +131,10 @@ export default class ProfileLink extends Component {
               className="p2 h5 text-centered text-medium border-top"
             >
               <span className="block">
-                <span className="text-bold">Metabase</span>{" "}
-                {t`is a Trademark of`} Metabase, Inc
+                <span className="text-bold">Kenga Analytics</span>{" "}
+                {t`is a Trademark of`} Kenga Analytics, Inc
               </span>
-              <span>{t`and is built with care in San Francisco, CA`}</span>
+              <span>{t`and is built with care in Uganda`}</span>
             </div>
           </Modal>
         ) : null}

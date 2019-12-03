@@ -18,22 +18,22 @@
   (:import [java.util TimeZone UUID]))
 
 (defsetting check-for-updates
-  (deferred-tru "Identify when new versions of Metabase are available.")
+  (deferred-tru "Identify when new versions of Kenga Analytics are available.")
   :type    :boolean
   :default true)
 
 (defsetting version-info
-  (deferred-tru "Information about available versions of Metabase.")
+  (deferred-tru "Information about available versions of Kenga Analytics.")
   :type    :json
   :default {})
 
 (defsetting site-name
-  (deferred-tru "The name used for this instance of Metabase.")
-  :default "Metabase")
+  (deferred-tru "The name used for this instance of Kenga Analytics.")
+  :default "Kenga Analytics")
 
 (defsetting site-uuid
   ;; Don't i18n this docstring because it's not user-facing! :)
-  "Unique identifier used for this instance of Metabase. This is set once and only once the first time it is fetched via
+  "Unique identifier used for this instance of Kenga Analytics. This is set once and only once the first time it is fetched via
   its magic getter. Nice!"
   :internal? true
   :setter    (fn [& _]
@@ -60,7 +60,7 @@
 ;; This value is *guaranteed* to never have a trailing slash :D
 ;; It will also prepend `http://` to the URL if there's not protocol when it comes in
 (defsetting site-url
-  (deferred-tru "The base URL of this Metabase instance, e.g. \"http://metabase.my-company.com\".")
+  (deferred-tru "The base URL of this Kenga Analytics instance, e.g. \"http://metabase.my-company.com\".")
   :getter (fn []
             (try
               (some-> (setting/get-string :site-url) normalize-site-url)
@@ -70,7 +70,7 @@
             (setting/set-string! :site-url (some-> new-value normalize-site-url))))
 
 (defsetting site-locale
-  (str  (deferred-tru "The default language for this Metabase instance.")
+  (str  (deferred-tru "The default language for this Kenga Analytics instance.")
         " "
         (deferred-tru "This only applies to emails, Pulses, etc. Users'' browsers will specify the language used in the user interface."))
   :type      :string
@@ -81,7 +81,7 @@
   (deferred-tru "The email address users should be referred to if they encounter a problem."))
 
 (defsetting anon-tracking-enabled
-  (deferred-tru "Enable the collection of anonymous usage data in order to help Metabase improve.")
+  (deferred-tru "Enable the collection of anonymous usage data in order to help Kenga Analytics improve.")
   :type   :boolean
   :default true)
 
@@ -141,7 +141,7 @@
   :default (* 60 60 24 100)) ; 100 days
 
 (defsetting query-caching-min-ttl
-  (deferred-tru "Metabase will cache all saved questions with an average query execution time longer than this many seconds:")
+  (deferred-tru "Kenga Analytics will cache all saved questions with an average query execution time longer than this many seconds:")
   :type    :integer
   :default 60)
 
@@ -207,7 +207,7 @@
 
 ;; TODO - it seems like it would be a nice performance win to cache this a little bit
 (defn public-settings
-  "Return a simple map of key/value pairs which represent the public settings (`MetabaseBootstrap`) for the front-end
+  "Return a simple map of key/value pairs which represent the public settings (`Kenga Analytics`) for the front-end
    application."
   []
   {:admin_email           (admin-email)

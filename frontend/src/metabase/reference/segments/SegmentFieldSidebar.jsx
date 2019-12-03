@@ -11,7 +11,7 @@ import pure from "recompose/pure";
 
 const SegmentFieldSidebar = ({ segment, field, style, className }) => (
   <div className={cx(S.sidebar, className)} style={style}>
-    <ul className="mx3">
+    <ul>
       <div className={S.breadcrumbs}>
         <Breadcrumbs
           className="py4"

@@ -44,11 +44,9 @@
 (defmethod excluded-schemas :sql-jdbc [_] nil)
 
 
-;; TODO - why don't we just use JDBC `DatabaseMetaData` to do this? This is wacky
 (defmulti database-type->base-type
   "Given a native DB column type (as a keyword), return the corresponding `Field` `base-type`, which should derive from
-  `:type/*`. You can use `pattern-based-database-type->base-type` in this namespace to implement this using regex
-  patterns."
+  `:type/*`. You can use `pattern-based-database-type->base-type` in this namespace to implement this using regex patterns."
   {:arglists '([driver database-type])}
   driver/dispatch-on-initialized-driver
   :hierarchy #'driver/hierarchy)
@@ -131,7 +129,7 @@
     (set (map :table_cat (jdbc/metadata-result rs)))))
 
 (defn- database-type->base-type-or-warn
-  "Given a `database-type` (e.g. `VARCHAR`) return the mapped Metabase type (e.g. `:type/Text`)."
+  "Given a `database-type` (e.g. `VARCHAR`) return the mapped Kenga Analytics type (e.g. `:type/Text`)."
   [driver database-type]
   (or (database-type->base-type driver (keyword database-type))
       (do (log/warn (format "Don't know how to map column type '%s' to a Field base_type, falling back to :type/*."

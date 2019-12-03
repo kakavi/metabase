@@ -76,7 +76,7 @@ export default class PreferencesStep extends Component {
           <StepTitle title={stepText} circleText={"3"} />
           <form onSubmit={this.formSubmitted.bind(this)} noValidate>
             <div className="Form-field">
-              {t`In order to help us improve Metabase, we'd like to collect certain data about usage through Google Analytics.`}{" "}
+              {t`In order to help us improve Kenga Analytics, we'd like to collect certain data about usage through Google Analytics.`}{" "}
               <a
                 className="link"
                 href={MetabaseSettings.docsUrl("information-collection")}

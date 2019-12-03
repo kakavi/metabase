@@ -6,10 +6,13 @@ import pure from "recompose/pure";
 
 import S from "./ReferenceHeader.css";
 import L from "metabase/components/List.css";
+import E from "metabase/reference/components/EditButton.css";
 
+import IconBorder from "metabase/components/IconBorder";
 import Icon from "metabase/components/Icon";
 import Ellipsified from "metabase/components/Ellipsified";
 import { t } from "ttag";
+import { color } from "metabase/lib/colors";
 
 const ReferenceHeader = ({
   name,
@@ -18,13 +21,23 @@ const ReferenceHeader = ({
   headerBody,
   headerLink,
 }) => (
-  <div className="wrapper">
+  <div className="wrapper wrapper--trim">
     <div className={cx("relative", L.header)}>
-      {headerIcon && (
-        <div className="flex align-center mr2">
-          <Icon className="text-light" name={headerIcon} size={21} />
-        </div>
-      )}
+      <div className={L.leftIcons}>
+        {headerIcon && (
+          <IconBorder
+            borderWidth="0"
+            style={{ backgroundColor: color("bg-medium") }}
+          >
+            <Icon
+              className="text-brand"
+              name={headerIcon}
+              width={24}
+              height={24}
+            />
+          </IconBorder>
+        )}
+      </div>
       <div className={S.headerBody}>
         <Ellipsified
           key="1"
@@ -38,7 +51,12 @@ const ReferenceHeader = ({
           <div key="2" className={cx("flex-full", S.headerButton)}>
             <Link
               to={headerLink}
-              className={cx("Button", "Button--borderless", "ml3")}
+              className={cx(
+                "Button",
+                "Button--borderless",
+                "ml3",
+                E.editButton,
+              )}
               data-metabase-event={`Data Reference;Entity -> QB click;${type}`}
             >
               <div className="flex align-center relative">

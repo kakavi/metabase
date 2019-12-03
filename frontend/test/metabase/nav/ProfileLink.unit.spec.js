@@ -26,7 +26,7 @@ describe("ProfileLink", () => {
           "Account settings",
           "Activity",
           "Help",
-          "About Metabase",
+          "About Kenga Analytics",
           "Sign out",
         ]);
       });
@@ -46,7 +46,7 @@ describe("ProfileLink", () => {
           "Admin",
           "Activity",
           "Help",
-          "About Metabase",
+          "About Kenga Analytics",
           "Sign out",
         ]);
       });

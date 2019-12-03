@@ -1,26 +1,26 @@
 # FAQs
 
-Here is a list of some frequently asked questions about Metabase.
+Here is a list of some frequently asked questions about Kenga Analytics.
 
 ## General Questions
 
 - [How do I ask for help?](general/how-do-i-ask-for-help.md)
 - [What if I find a bug?](general/what-if-i-find-a-bug.md)
 - [Can I request a new feature?](general/can-i-request-a-new-feature.md)
-- [Does Metabase do X?](general/does-metabase-do-x.md)
-- [Does Metabase have access to my data?](general/does-metabase-have-access-to-my-companys-data.md)
-- [Is Metabase accessible or 508 compliant?](general/is-metabase-508-compliant.md)
-- [Do we need a Data Processing Agreement with Metabase to comply with GDPR?](general/do-we-need-a-data-processing-agreement.md)
+- [Does Kenga Analytics do X?](general/does-metabase-do-x.md)
+- [Does Kenga Analytics have access to my data?](general/does-metabase-have-access-to-my-companys-data.md)
+- [Is Kenga Analytics accessible or 508 compliant?](general/is-metabase-508-compliant.md)
+- [Do we need a Data Processing Agreement with Kenga Analytics to comply with GDPR?](general/do-we-need-a-data-processing-agreement.md)
 
 ## Set-up and Admin Questions
 
-- [Which databases does Metabase support?](setup/which-databases-does-metabase-support.md)
-- [I'm having trouble running Metabase.](setup/i-am-having-trouble-running-metabase.md)
+- [Which databases does Kenga Analytics support?](setup/which-databases-does-metabase-support.md)
+- [I'm having trouble running Kenga Analytics.](setup/i-am-having-trouble-running-metabase.md)
 - [What's H2?](setup/what-is-h2.md)
 - [When should I migrate H2 to MySQL or Postgres?](setup/when-should-i-migrate-h2.md)
-- [How do I integrate Metabase and our single-sign on (SSO) solution?](setup/how-do-i-integrate-with-sso.md)
+- [How do I integrate Kenga Analytics and our single-sign on (SSO) solution?](setup/how-do-i-integrate-with-sso.md)
 
-## Using Metabase
+## Using Kenga Analytics
 
 - [How do I reset my password?](using-metabase/how-do-i-reset-my-password.md)
 - [How do I ask questions about my data?](using-metabase/how-do-i-ask-questions.md)

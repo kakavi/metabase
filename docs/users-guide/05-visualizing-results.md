@@ -2,7 +2,7 @@
 
 While tables are useful for looking up information or finding specific numbers, it's usually easier to see trends and make sense of data overall using charts.
 
-In Metabase, an answer to a question can be visualized in a number of ways:
+In Kenga Analytics, an answer to a question can be visualized in a number of ways:
 
 - [Number](#numbers)
 - [Trend](#smart-numbers)
@@ -49,13 +49,13 @@ By default, Trends will display increases as green (i.e. "good") and decreases a
 
 #### Progress bars
 
-Progress bars are for comparing a single number to a goal value that you set. Open up the settings for your progress bar to choose a value for your goal, and Metabase will show you how far away your question's current result is from the goal.
+Progress bars are for comparing a single number to a goal value that you set. Open up the settings for your progress bar to choose a value for your goal, and Kenga Analytics will show you how far away your question's current result is from the goal.
 
 ![Progress bar](images/visualizations/progress.png)
 
 #### Gauges
 
-Ah, gauges: you either love 'em or you hate 'em. …Or you feel "meh" about them, I guess. Whatever the case, gauges allow you to show a single number and where its value falls within a set of colored ranges that you can specify. By default, when you choose the Gauge visualization, Metabase will create red, yellow, and green ranges for you.
+Ah, gauges: you either love 'em or you hate 'em. …Or you feel "meh" about them, I guess. Whatever the case, gauges allow you to show a single number and where its value falls within a set of colored ranges that you can specify. By default, when you choose the Gauge visualization, Kenga Analytics will create red, yellow, and green ranges for you.
 
 ![Gauge](images/visualizations/gauge.png)
 
@@ -75,7 +75,7 @@ Open up the settings for your table and you'll see the Columns tab, which displa
 
 To hide a column, click the X icon on it; that'll send it down to the "More columns" area in case you want to bring it back. To add a linked column, just click the + icon on it, which will bring it to the "Visible columns" section. Click and drag any of the columns listed there to rearrange the order in which they appear. Another super easy way to rearrange columns without having to open up the visualization settings is to simply click and drag on a column's heading to move it where you'd like it to go.
 
-**Note:** changing these options doesn't change the actual table itself; it just creates a custom view of it that you can save as a "question" in Metabase and refer back to later, share with others, or add to a dashboard.
+**Note:** changing these options doesn't change the actual table itself; it just creates a custom view of it that you can save as a "question" in Kenga Analytics and refer back to later, share with others, or add to a dashboard.
 
 ##### Column formatting options
 
@@ -132,7 +132,7 @@ You can set as many rules on a table as you want. If two or more rules disagree 
 
 ##### Pivoted tables
 
-If your table is a result that contains one numeric column and two grouping columns, Metabase will also automatically "pivot" your table, like in the example below. What this does is it takes one of your columns and rotates it 90 degrees ("pivots" it) so that each of its values becomes a column heading. If you open up the visualization settings by clicking the gear icon, you can choose which column to pivot in case Metabase got it wrong; or you can also turn the pivoting behavior off entirely.
+If your table is a result that contains one numeric column and two grouping columns, Kenga Analytics will also automatically "pivot" your table, like in the example below. What this does is it takes one of your columns and rotates it 90 degrees ("pivots" it) so that each of its values becomes a column heading. If you open up the visualization settings by clicking the gear icon, you can choose which column to pivot in case Kenga Analytics got it wrong; or you can also turn the pivoting behavior off entirely.
 
 ![Pivot table](images/visualizations/pivot.png)
 
@@ -147,7 +147,7 @@ Area charts are useful when comparing the proportions of two metrics over time. 
 ![Stacked area chart](images/visualizations/area.png)
 
 **Trend lines**
-Another useful option for line, area, bar, and scatter charts is trend lines. If you have a question where you're grouping by a time field, open up the visualization settings and turn the `Show trend line` toggle on to display a trend line. Metabase will choose the best type of line to fit to the trend of your series. This will even work if you have multiple metrics selected in your summary. But it won't work if you have any groupings beyond the one time field.
+Another useful option for line, area, bar, and scatter charts is trend lines. If you have a question where you're grouping by a time field, open up the visualization settings and turn the `Show trend line` toggle on to display a trend line. Kenga Analytics will choose the best type of line to fit to the trend of your series. This will even work if you have multiple metrics selected in your summary. But it won't work if you have any groupings beyond the one time field.
 
 ![Trend lines](images/visualizations/trend-lines.png)
 
@@ -157,7 +157,7 @@ Also called Combo Charts, the Line + Bar chart lets you combine bars and lines (
 
 ![Line + bar](images/visualizations/combo-chart.png)
 
-Metabase will pick one of your series to display as a line, and another to display as a bar by default. Open up the visualization settings to change which series are lines, bars, or areas, and to change other per-series settings like colors. Click the down arrow icon on the right of a series to see additional options:
+Kenga Analytics will pick one of your series to display as a line, and another to display as a bar by default. Open up the visualization settings to change which series are lines, bars, or areas, and to change other per-series settings like colors. Click the down arrow icon on the right of a series to see additional options:
 
 ![Line + bar](images/visualizations/combo-chart-settings.png)
 
@@ -171,17 +171,17 @@ To use a Line + Bar chart, you'll either need to have two or more metrics select
 
 #### Row charts
 
-If you're trying to group a number by a column that has a lot of possible values, like a Vendor or Product Title field, try visualizing it as a row chart. Metabase will show you the bars in descending order of size, with a final bar at the bottom for items that didn't fit.
+If you're trying to group a number by a column that has a lot of possible values, like a Vendor or Product Title field, try visualizing it as a row chart. Kenga Analytics will show you the bars in descending order of size, with a final bar at the bottom for items that didn't fit.
 
 ![Row chart](images/visualizations/row.png)
 
 ##### Histograms
 
-If you have a bar chart like Count of Users by Age, where the x-axis is a number, you'll get a special kind of chart called a **histogram**, where each bar represents a range of values (called a "bin"). Note that Metabase will automatically bin your results any time you use a number as a grouping, even if you aren't viewing a bar chart. Questions that use latitude and longitude will also get binned automatically.
+If you have a bar chart like Count of Users by Age, where the x-axis is a number, you'll get a special kind of chart called a **histogram**, where each bar represents a range of values (called a "bin"). Note that Kenga Analytics will automatically bin your results any time you use a number as a grouping, even if you aren't viewing a bar chart. Questions that use latitude and longitude will also get binned automatically.
 
 ![Histogram](images/histogram.png)
 
-By default, Metabase will automatically choose a good way to bin your results. But you can change how many bins your result has, or turn the binning off entirely, by clicking on the area to the right of the column you're grouping by:
+By default, Kenga Analytics will automatically choose a good way to bin your results. But you can change how many bins your result has, or turn the binning off entirely, by clicking on the area to the right of the column you're grouping by:
 
 ![Binning options](images/notebook/histogram-bins.png)
 
@@ -214,7 +214,7 @@ The options for pie charts let you choose which field to use as your measurement
 
 #### Funnel
 
-Funnels are commonly used in e-commerce or sales to visualize how many customers are present within each step of a checkout flow or sales cycle. At their most general, funnels show you values broken out by steps, and the percent decrease between each successive step. To create a funnel in Metabase, you'll need to have a table with at least two columns: one column that contains the metric you're interested in, and another that contains the funnel's steps.
+Funnels are commonly used in e-commerce or sales to visualize how many customers are present within each step of a checkout flow or sales cycle. At their most general, funnels show you values broken out by steps, and the percent decrease between each successive step. To create a funnel in Kenga Analytics, you'll need to have a table with at least two columns: one column that contains the metric you're interested in, and another that contains the funnel's steps.
 
 For example, I might have an Opportunities table, and I could create a question that gives me the number of sales leads broken out by a field that contains stages such as `Prospecting`, `Qualification`, `Proposal`, `Negotiation`, and `Closed`. In this example, the percentages shown along the x-axis tell you what percent of the total starting opportunities are still present at each subsequent step; so 18.89% of our total opportunities have made it all the way to being closed deals. The number below each percent is the actual value of the count at that step — in our example, the actual number of opportunities that are currently at each step. Together, these numbers help you figure out where you're losing your customers or users.
 
@@ -222,20 +222,20 @@ For example, I might have an Opportunities table, and I could create a question 
 
 #### Maps
 
-When you select the Map visualization setting, Metabase will automatically try and pick the best kind of map to use based on the table or result set you're currently looking at. Here are the maps that Metabase uses:
+When you select the Map visualization setting, Kenga Analytics will automatically try and pick the best kind of map to use based on the table or result set you're currently looking at. Here are the maps that Kenga Analytics uses:
 
 - **United States Map** — Creating a map of the United States from your data requires your results to contain a column that contains names of states or two-letter state codes. This lets you do things like visualize the count of your users broken out by state, with darker states representing more users.
 - **World Map** — To visualize your results in the format of a map of the world broken out by country, your result must contain a column with two-letter country codes. (E.g., count of users by country.)
 
 ![Region map](images/visualizations/map.png)
 
-- **Pin Map** — If your table contains a latitude and longitude field, Metabase will try to display it as a pin map of the world. This will put one pin on the map for each row in your table, based on the latitude and longitude fields. You can try this with the Sample Dataset that's included in Metabase: start a new question and select the People table, use `raw data` for your view, and choose the Map option for your visualization. you'll see a map of the world, with each dot representing the latitude and longitude coordinates of a single person from the People table.
+- **Pin Map** — If your table contains a latitude and longitude field, Kenga Analytics will try to display it as a pin map of the world. This will put one pin on the map for each row in your table, based on the latitude and longitude fields. You can try this with the Sample Dataset that's included in Kenga Analytics: start a new question and select the People table, use `raw data` for your view, and choose the Map option for your visualization. you'll see a map of the world, with each dot representing the latitude and longitude coordinates of a single person from the People table.
 
 ![Pin map](images/visualizations/pin-map.png)
 
 When you open up the Map options, you can manually switch between a region map (i.e., United States or world) and a pin map. If you're using a region map, you can also choose which field to use as the measurement, and which to use as the region (i.e. State or Country).
 
-Metabase also allows administrators to add custom region maps via GeoJSON files through the Metabase Admin Panel.
+Kenga Analytics also allows administrators to add custom region maps via GeoJSON files through the Kenga Analytics Admin Panel.
 
 ---
 

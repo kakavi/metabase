@@ -287,9 +287,9 @@ export default class DatabaseDetailsForm extends Component {
               />
             </div>
             <div className="px2">
-              <h3>{t`This is a large database, so let me choose when Metabase syncs and scans`}</h3>
+              <h3>{t`This is a large database, so let me choose when Kenga Analytics syncs and scans`}</h3>
               <div style={{ maxWidth: "40rem" }} className="pt1">
-                {t`By default, Metabase does a lightweight hourly sync and an intensive daily scan of field values. If you have a large database, we recommend turning this on and reviewing when and how often the field value scans happen.`}
+                {t`By default, Kenga Analytics does a lightweight hourly sync and an intensive daily scan of field values. If you have a large database, we recommend turning this on and reviewing when and how often the field value scans happen.`}
               </div>
             </div>
           </div>
@@ -312,7 +312,7 @@ export default class DatabaseDetailsForm extends Component {
             <div className="px2">
               <h3>{t`Automatically run queries when doing simple filtering and summarizing`}</h3>
               <div style={{ maxWidth: "40rem" }} className="pt1">
-                {t`When this is on, Metabase will automatically run queries when users do simple explorations with the Summarize and Filter buttons when viewing a table or chart. You can turn this off if querying this database is slow. This setting doesn’t affect drill-throughs or SQL queries.`}
+                {t`When this is on, Kenga Analytics will automatically run queries when users do simple explorations with the Summarize and Filter buttons when viewing a table or chart. You can turn this off if querying this database is slow. This setting doesn’t affect drill-throughs or SQL queries.`}
               </div>
             </div>
           </div>
@@ -387,7 +387,7 @@ export default class DatabaseDetailsForm extends Component {
         enableAPILink = (
           <div className="flex align-center">
             <div className="Grid-cell--top">
-              {t`To use Metabase with this data you must enable API access in the Google Developers Console.`}
+              {t`To use Kenga Analytics with this data you must enable API access in the Google Developers Console.`}
             </div>
             <div className="Grid-cell--top ml1">
               {jt`${(

@@ -1,10 +1,8 @@
-(ns ^:deprecated expectations
+(ns expectations
   (:require [clojure
              [data :as data]
              [test :as t]]
             [methodical.core :as m]))
-
-(alter-meta! *ns* assoc :deprecated true)
 
 ;; Basically a Chain of Responibility pattern: we try each impl in turn until one of them accepts the args and returns
 ;; a report
@@ -114,6 +112,7 @@
                 (->ExceptionResult e#)))]
      (t/do-report
       (compare-expr ~e a# ~msg '~form))))
+
 
 (defmacro ^:deprecated expect
   "Simple macro that simulates converts an Expectations-style `expect` form into a `clojure.test` `deftest` form."

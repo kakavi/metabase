@@ -5,7 +5,7 @@ export const component = Visualization;
 export const noSnapshotTest = true;
 
 export const description = `
-A component to render a Metabase visualization
+A component to render a Kenga Analytics visualization
 `;
 
 const PROPS = {

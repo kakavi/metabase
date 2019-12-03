@@ -30,7 +30,7 @@
         ;; issues if it attempts to delete this user and it is the only admin test user
         (tu/discard-setting-changes [site-name anon-tracking-enabled admin-email]
           (let [api-response (http/client :post 200 "setup" {:token (setup/create-token!)
-                                                             :prefs {:site_name "Metabase Test"}
+                                                             :prefs {:site_name "Kenga Analytics Test"}
                                                              :user  {:first_name (tu/random-name)
                                                                      :last_name  (tu/random-name)
                                                                      :email      email

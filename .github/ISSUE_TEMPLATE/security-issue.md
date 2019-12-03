@@ -1,6 +1,6 @@
 ---
 name: Security Issue
-about: If you think you found a security vulnerability with Metabase
+about: If you think you found a security vulnerability with Kenga Analytics
 title: ''
 labels: "Security, .Needs Triage"
 assignees: ''

@@ -1,5 +1,5 @@
 (ns metabase.driver
-  "Metabase Drivers handle various things we need to do with connected data warehouse databases, including things like
+  "Kenga Analytics Drivers handle various things we need to do with connected data warehouse databases, including things like
   introspecting their schemas and processing and running MBQL queries. Drivers must implement some or all of the
   multimethods defined below, and register themselves with a call to `regsiter!`.
 
@@ -99,7 +99,7 @@
   for all registered, non-abstract drivers and false everything else.
 
   Note that an available driver is not necessarily initialized yet; for example lazy-loaded drivers are *registered*
-  when Metabase starts up (meaning this will return `true` for them) and only initialized when first needed."
+  when Kenga Analytics starts up (meaning this will return `true` for them) and only initialized when first needed."
   [driver]
   ((every-pred registered? concrete?) driver))
 
@@ -120,12 +120,11 @@
        (trs "Loading driver {0} {1}" (u/format-color 'blue driver) (apply list 'require expected-ns require-options)))
       (try
         (apply classloader/require expected-ns require-options)
-        (catch Throwable e
-          (log/error e (tru "Error loading driver namespace"))
+        (catch Throwable _
           (throw (Exception. (tru "Could not find {0} driver." driver))))))))
 
 (defn- load-driver-namespace-if-needed!
-  "Load the expected namespace for a `driver` if it has not already been registed. This only works for core Metabase
+  "Load the expected namespace for a `driver` if it has not already been registed. This only works for core Kenga Analytics
   drivers, whose namespaces follow an expected pattern; drivers provided by 3rd-party plugins are expected to register
   themselves in their plugin initialization code.
 
@@ -272,6 +271,7 @@
   [driver]
   (@initialized-drivers driver))
 
+
 (declare initialize!)
 
 (defonce ^:private initialization-lock (Object.))
@@ -337,12 +337,12 @@
   internally by the driver.)
 
   'Trivial' methods include a tiny handful of ones like `connection-properties` that simply provide information about
-  the driver, but do not connect to databases; these can be be supplied, for example, by a Metabase plugin manifest
+  the driver, but do not connect to databases; these can be be supplied, for example, by a Kenga Analytics plugin manifest
   file (which is supplied for lazy-loaded drivers). Methods that require connecting to a database dispatch off of
   `the-initialized-driver`, which will initialize a driver if not already done so.
 
   You will rarely need to write an implentation for this method yourself. A lazy-loaded driver (like most of the
-  Metabase drivers in v1.0 and above) are automatiaclly given an implentation of this method that performs the
+  Kenga Analytics drivers in v1.0 and above) are automatiaclly given an implentation of this method that performs the
   `init-steps` specified in the plugin manifest (such as loading namespaces in question).
 
   If you do need to implement this method yourself, you do not need to call parent implementations. We'll take care of
@@ -558,7 +558,7 @@
 
 
 (defmulti ^:deprecated format-custom-field-name
-  "Prior to Metabase 0.33.0, you could specifiy custom names for aggregations in MBQL by wrapping the clause in a
+  "Prior to Kenga Analytics 0.33.0, you could specifiy custom names for aggregations in MBQL by wrapping the clause in a
   `:named` clause:
 
     [:named [:count] \"My Count\"]
@@ -609,7 +609,7 @@
 
   For example, a driver like Postgres would build a valid SQL expression and return a map such as:
 
-    {:query \"-- Metabase card: 10 user: 5
+    {:query \"-- Kenga Analytics card: 10 user: 5
               SELECT * FROM my_table\"}"
   {:arglists '([driver query]), :style/indent 1}
   dispatch-on-initialized-driver
@@ -701,25 +701,11 @@
   dispatch-on-initialized-driver
   :hierarchy #'hierarchy)
 
-(defmulti db-default-timezone
-  "Return the *system* timezone ID name of this database, i.e. the timezone that local dates/times/datetimes are
-  considered to be in by default. Ideally, this method should return a timezone ID like `America/Los_Angeles`, but an
-  offset formatted like `-08:00` is acceptable in cases where the actual ID cannot be provided."
-  {:arglists '(^java.lang.String [driver database])}
-  dispatch-on-initialized-driver
-  :hierarchy #'hierarchy)
-
-(defmethod db-default-timezone ::driver [_ _] nil)
-
-;; TIMEZONE FIXME — remove this method entirely
-(defmulti ^:deprecated current-db-time
+(defmulti ^DateTime current-db-time
   "Return the current time and timezone from the perspective of `database`. You can use
-  `metabase.driver.common/current-db-time` to implement this. This should return a Joda-Time `DateTime`.
-
-  DEPRECATED — the only thing this method is ultimately used for is to determine the DB's system timezone.
-  `db-default-timezone` has been introduced as an intended replacement for this method; implement it instead. This method
-  will be removed in a future release."
-  {:arglists '(^org.joda.time.DateTime [driver database])} dispatch-on-initialized-driver
+  `metabase.driver.common/current-db-time` to implement this. This should return a Joda-Time `DateTime`."
+  {:arglists '([driver database])}
+  dispatch-on-initialized-driver
   :hierarchy #'hierarchy)
 
 (defmethod current-db-time ::driver [_ _] nil)

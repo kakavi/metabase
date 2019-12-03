@@ -34,7 +34,6 @@
     (insert! (for [row rows]
                (into {} (for [[k v] row]
                           [k (cond
-                               ;; TIMEZONE FIXME
                                (instance? java.sql.Time v)
                                (hsql/call :time (hx/literal (du/format-time v "UTC")))
 

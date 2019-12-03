@@ -1,8 +1,8 @@
 ## Customizing drill-through
 
-Out of the box, Metabase comes with some handy actions that you can access when you click on parts of a table or chart: you can filter, break out, zoom in, or x-ray things you click.
+Out of the box, Kenga Analytics comes with some handy actions that you can access when you click on parts of a table or chart: you can filter, break out, zoom in, or x-ray things you click.
 
-But the Enterprise Edition of Metabase includes a set of features which allow you to customize what happens when users click on cells in a table or parts of charts.
+But the Enterprise Edition of Kenga Analytics includes a set of features which allow you to customize what happens when users click on cells in a table or parts of charts.
 
 For example, you might have a high-level executive dashboard with a bar chart which shows your total revenue per product category, and what you’d like to do is allow your users to click on a bar in that chart to see a *different* dashboard with more detail about that product category. Or maybe you have a similar scenario, but you’d like to set things up so that clicking on a bar takes your users to a totally different app or site, like an internal company wiki page.
 
@@ -23,13 +23,13 @@ What we need to do here is to type in the full URL of where a user should go whe
 
 The important part is the `{% raw %}{{STATE}}{% endraw %}` bit — what we’re doing here is referring to the `STATE` column in our query’s result (which we’re using for our x-axis in this case). So if a user was to click on the `TX` (Texas) bar in our chart, the value of the `STATE` column for that bar would be inserted into our URL, so it would look like this: `https://www.google.com/search?q=TX`. If you click on the blue `Columns` link below the input box here, you’ll see the full list of all the columns you can refer to. Your URL can use as many column variables you want; you can even refer to the same column multiple times in different parts of the URL.
 
-Next we’ll click `Done`, then save our dashboard. Now when we click our chart, instead of seeing the actions menu, we’ll be taken to the URL that we entered above, with the value of the clicked bar inserted into the URL. These links will be opened in a new tab or window unless they link to another chart or dashboard within Metabase.
+Next we’ll click `Done`, then save our dashboard. Now when we click our chart, instead of seeing the actions menu, we’ll be taken to the URL that we entered above, with the value of the clicked bar inserted into the URL. These links will be opened in a new tab or window unless they link to another chart or dashboard within Kenga Analytics.
 
 *Note:* One important thing to point out is that when we customize drill-through on a dashboard card, rather than on the standalone saved question, we’re only customizing that instance of the chart on that one dashboard.
 
-### Linking to another Metabase dashboard or saved question
+### Linking to another Kenga Analytics dashboard or saved question
 
-Now that you know how to create a custom link with variables, let's talk about how to use that to link to another dashboard or saved question in your Metabase instance.
+Now that you know how to create a custom link with variables, let's talk about how to use that to link to another dashboard or saved question in your Kenga Analytics instance.
 
 Continuing with our example chart from above, let's say that we have another dashboard with lots more in-depth information and metrics about orders for all states. In order to filter all the charts in our dashboard by a single state, we've added a `Location` type filter which has been set to let us filter by State, so we can e.g. select `Delaware` from it to make all of the charts only show Delawarean data.
 
@@ -37,7 +37,7 @@ Continuing with our example chart from above, let's say that we have another das
 
 What's really cool now is that we can use a custom link on the bar chart in our first dashboard to automatically pick a value for the State filter in our detail dashboard based on which bar is clicked. To do that, we'll go back to the chart on our first dashboard and go to the `Drill-through` tab in its settings.
 
-In the Link Template input box, we'll put in the full URL of the dashboard that we want to link to, with a variable in it to populate the dashboard's filter. Dashboard URLs in Metabase look like this: `http://YOUR-METABASE-LOCATION.com/dashboard/5`. When you make a selection for a filter on a dashboard, you'll notice some additional text gets added to the end of the URL, like this: `http://YOUR-METABASE-LOCATION.com/dashboard/5?state=DE` In this example, `state` is the name of a filter on our dashboard, and `DE` is the current value of the filter (DE for Delaware). So in our input box, we're going to enter a template that looks like that, but with our `{% raw %}{{STATE}}{% endraw %}` column variable in the spot where the filter's value goes: `http://YOUR-METABASE-LOCATION.com/dashboard/5?state={% raw %}{{STATE}}{% endraw %}`. Once we save our changes, whenever someone clicks on a bar in this chart, it will take them to our second dashboard with the State filter on that dashboard filled in with the State value of the bar that was clicked.
+In the Link Template input box, we'll put in the full URL of the dashboard that we want to link to, with a variable in it to populate the dashboard's filter. Dashboard URLs in Kenga Analytics look like this: `http://YOUR-METABASE-LOCATION.com/dashboard/5`. When you make a selection for a filter on a dashboard, you'll notice some additional text gets added to the end of the URL, like this: `http://YOUR-METABASE-LOCATION.com/dashboard/5?state=DE` In this example, `state` is the name of a filter on our dashboard, and `DE` is the current value of the filter (DE for Delaware). So in our input box, we're going to enter a template that looks like that, but with our `{% raw %}{{STATE}}{% endraw %}` column variable in the spot where the filter's value goes: `http://YOUR-METABASE-LOCATION.com/dashboard/5?state={% raw %}{{STATE}}{% endraw %}`. Once we save our changes, whenever someone clicks on a bar in this chart, it will take them to our second dashboard with the State filter on that dashboard filled in with the State value of the bar that was clicked.
 
 ![Dashboard link template](./images/customizing-drill-through/dashboard-link-template.png)
 
@@ -76,5 +76,5 @@ You can also optionally customize what text should be displayed in each cell of 
 
 ---
 
-## Next: Copying contents of one Metabase instance to another
-Learn how to use [serialization](serialization.md) to create and load data dumps of the contents of a Metabase instance.
+## Next: Copying contents of one Kenga Analytics instance to another
+Learn how to use [serialization](serialization.md) to create and load data dumps of the contents of a Kenga Analytics instance.

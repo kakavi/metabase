@@ -429,7 +429,7 @@ Object {
       "display_name": "Created At",
       "fingerprint": Object {
         "global": Object {
-          "distinct-count": 9998,
+          "distinct-count": 10001,
           "nil%": 0,
         },
         "type": Object {

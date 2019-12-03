@@ -2,7 +2,7 @@
   "Classifier that determines whether a Field should be marked as a `:type/Category` and/or as a `list` Field based on
   the number of distinct values it has.
 
-  As of Metabase v0.29, the Category now longer has any use inside of the Metabase backend; it is used
+  As of Kenga Analytics v0.29, the Category now longer has any use inside of the Kenga Analytics backend; it is used
   only for frontend purposes (e.g. deciding which widget to show). Previously, makring something as a Category meant
   that its values should be cached and saved in a FieldValues object. With the changes in v0.29, this is instead
   managed by a column called `has_field_values`.
@@ -23,7 +23,7 @@
 
 (defn- cannot-be-category-or-list?
   [{:keys [base_type special_type]}]
-  (or (isa? base_type :type/Temporal)
+  (or (isa? base_type :type/DateTime)
       (isa? base_type :type/Collection)
       (isa? base_type :type/Float)
       ;; Don't let IDs become list Fields (they already can't become categories, because they already have a special

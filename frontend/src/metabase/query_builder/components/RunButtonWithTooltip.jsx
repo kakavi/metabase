@@ -8,24 +8,25 @@ import RunButton from "./RunButton";
 
 const REFRESH_TOOLTIP_THRESHOLD = 30 * 1000; // 30 seconds
 
-const defaultGetTooltip = ({ isDirty, result }) => {
-  const { cached, average_execution_time } = result || {};
-  return !isDirty &&
-    cached &&
-    average_execution_time > REFRESH_TOOLTIP_THRESHOLD
-    ? t`This question will take approximately ${duration(
-        average_execution_time,
-      )} to refresh`
-    : null;
-};
+const RunButtonWithTooltip = props => {
+  const { isDirty, result } = props;
+  let runButtonTooltip;
+  if (
+    !isDirty &&
+    result &&
+    result.cached &&
+    result.average_execution_time > REFRESH_TOOLTIP_THRESHOLD
+  ) {
+    runButtonTooltip = t`This question will take approximately ${duration(
+      result.average_execution_time,
+    )} to refresh`;
+  }
 
-export default function RunButtonWithTooltip({
-  getTooltip = defaultGetTooltip,
-  ...props
-}) {
   return (
-    <Tooltip tooltip={getTooltip(props)}>
+    <Tooltip tooltip={runButtonTooltip}>
       <RunButton {...props} />
     </Tooltip>
   );
-}
+};
+
+export default RunButtonWithTooltip;

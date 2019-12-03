@@ -88,7 +88,7 @@ export default class SettingsUpdatesForm extends Component {
     ) {
       return (
         <div className="p2 bg-brand bordered rounded border-brand text-white text-bold">
-          {jt`You're running Metabase ${this.removeVersionPrefixIfNeeded(
+          {jt`You're running Kenga Analytics ${this.removeVersionPrefixIfNeeded(
             currentVersion,
           )} which is the latest and greatest!`}
         </div>
@@ -97,7 +97,7 @@ export default class SettingsUpdatesForm extends Component {
       return (
         <div>
           <div className="p2 bg-green bordered rounded border-success flex flex-row align-center justify-between">
-            <span className="text-white text-bold">{jt`Metabase ${this.removeVersionPrefixIfNeeded(
+            <span className="text-white text-bold">{jt`Kenga Analytics ${this.removeVersionPrefixIfNeeded(
               versionInfo.latest.version,
             )} is available.  You're running ${this.removeVersionPrefixIfNeeded(
               currentVersion,

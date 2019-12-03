@@ -8,17 +8,17 @@ Whenever you’ve arrived at an answer that you want to save for later, click th
 
 A pop-up box will appear, prompting you to give your question a name and description, and to pick which collection to save it in. Note that your administrator might have set things up so that you're only allowed to save questions in certain collections, but you can always save things in your Personal Collection. After saving your question, you'll be asked if you want to add it to a new or existing dashboard.
 
-Now, whenever you want to refer to your question again you can find it by searching for it in the search bar at the top of Metabase, or by navigating to the collection where you saved it. To edit your question, go to it and click the pencil icon in the top-right.
+Now, whenever you want to refer to your question again you can find it by searching for it in the search bar at the top of Kenga Analytics, or by navigating to the collection where you saved it. To edit your question, go to it and click the pencil icon in the top-right.
 
 ### Sharing questions with public links
 
-If your Metabase administrator has enabled [public sharing](../administration-guide/12-public-links.md) on a saved question or dashboard, you can go to that question or dashboard and click on the sharing icon to find its public links. Public links can be viewed by anyone, even if they don't have access to Metabase. You can also use the public embedding code to embed your question or dashboard in a simple web page or blog post.
+If your Kenga Analytics administrator has enabled [public sharing](../administration-guide/12-public-links.md) on a saved question or dashboard, you can go to that question or dashboard and click on the sharing icon to find its public links. Public links can be viewed by anyone, even if they don't have access to Kenga Analytics. You can also use the public embedding code to embed your question or dashboard in a simple web page or blog post.
 
 ![Share icon](images/share-icon.png)
 
 ### Organizing and finding your saved questions
 
-After your team has been using Metabase for a while, you’ll probably end up with lots of saved questions. Metabase has several ways to help you organize things and find what you’re looking for.
+After your team has been using Kenga Analytics for a while, you’ll probably end up with lots of saved questions. Kenga Analytics has several ways to help you organize things and find what you’re looking for.
 
 ![Our analytics](images/our-analytics-page.png)
 
@@ -48,7 +48,7 @@ Any dashboards that are pinned in the main "Our analytics" collection will also 
 
 ![Search results](./images/search-results.png)
 
-Type into the search box that's at the top of Metabase and hit enter to search through all the dashboards, questions, collections, and pulses your team has.
+Type into the search box that's at the top of Kenga Analytics and hit enter to search through all the dashboards, questions, collections, and pulses your team has.
 
 #### Moving
 

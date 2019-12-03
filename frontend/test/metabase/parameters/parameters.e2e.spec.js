@@ -224,10 +224,7 @@ describe("parameters", () => {
       store.pushPath(Urls.question(question.id()) + "?id=1");
       app = mount(store.getAppContainer());
 
-      await Promise.all([
-        waitForRequestToComplete("GET", /^\/api\/database.*include_tables/),
-        waitForRequestToComplete("GET", /^\/api\/card\/\d+/),
-      ]);
+      await waitForRequestToComplete("GET", /^\/api\/card\/\d+/);
       expect(app.find("ViewHeading").text()).toEqual("Test Question");
 
       // wait for the query to load

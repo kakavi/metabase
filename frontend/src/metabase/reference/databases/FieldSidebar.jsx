@@ -17,7 +17,7 @@ const FieldSidebar = ({ database, table, field, style, className }) => (
     <ul>
       <div className={S.breadcrumbs}>
         <Breadcrumbs
-          className="py4 ml3"
+          className="py4"
           crumbs={[
             [database.name, `/reference/databases/${database.id}`],
             [
@@ -30,23 +30,21 @@ const FieldSidebar = ({ database, table, field, style, className }) => (
           placeholder={t`Data Reference`}
         />
       </div>
-      <ol className="mx3">
-        <SidebarItem
-          key={`/reference/databases/${database.id}/tables/${table.id}/fields/${field.id}`}
-          href={`/reference/databases/${database.id}/tables/${table.id}/fields/${field.id}`}
-          icon="document"
-          name={t`Details`}
-        />
+      <SidebarItem
+        key={`/reference/databases/${database.id}/tables/${table.id}/fields/${field.id}`}
+        href={`/reference/databases/${database.id}/tables/${table.id}/fields/${field.id}`}
+        icon="document"
+        name={t`Details`}
+      />
 
-        {MetabaseSettings.get("enable_xrays") && (
-          <SidebarItem
-            key={`/auto/dashboard/field/${field.id}`}
-            href={`/auto/dashboard/field/${field.id}`}
-            icon="bolt"
-            name={t`X-ray this field`}
-          />
-        )}
-      </ol>
+      {MetabaseSettings.get("enable_xrays") && (
+        <SidebarItem
+          key={`/auto/dashboard/field/${field.id}`}
+          href={`/auto/dashboard/field/${field.id}`}
+          icon="bolt"
+          name={t`X-ray this field`}
+        />
+      )}
     </ul>
   </div>
 );

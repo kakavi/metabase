@@ -37,7 +37,7 @@
                          (when-not (= 80 port) (str ":" port))
                          "/setup/")]
     (log/info (u/format-color 'green
-                  (str (deferred-trs "Please use the following URL to setup your Metabase installation:")
+                  (str (deferred-trs "Please use the following URL to setup your Kenga Analytics installation:")
                        "\n\n"
                        setup-url
                        "\n\n")))))
@@ -45,18 +45,18 @@
 (defn- destroy!
   "General application shutdown function which should be called once at application shuddown."
   []
-  (log/info (trs "Metabase Shutting Down ..."))
+  (log/info (trs "Kenga Analytics Shutting Down ..."))
   ;; TODO - it would really be much nicer if we implemented a basic notification system so these things could listen
   ;; to a Shutdown hook of some sort instead of having here
   (task/stop-scheduler!)
   (server/stop-web-server!)
-  (log/info (trs "Metabase Shutdown COMPLETE")))
+  (log/info (trs "Kenga Analytics Shutdown COMPLETE")))
 
 
 (defn init!
   "General application initialization function which should be run once at application startup."
   []
-  (log/info (trs "Starting Metabase version {0} ..." config/mb-version-string))
+  (log/info (trs "Starting Kenga Analytics version {0} ..." config/mb-version-string))
   (log/info (trs "System info:\n {0}" (u/pprint-to-str (troubleshooting/system-info))))
   (init-status/set-progress! 0.1)
 
@@ -73,7 +73,7 @@
   (init-status/set-progress! 0.4)
 
   ;; startup database.  validates connection & runs any necessary migrations
-  (log/info (trs "Setting up and migrating Metabase DB. Please sit tight, this may take a minute..."))
+  (log/info (trs "Setting up and migrating Kenga Analytics DB. Please sit tight, this may take a minute..."))
   (mdb/setup-db!)
   (init-status/set-progress! 0.5)
 
@@ -110,12 +110,12 @@
   (set-locale (setting/get :site-locale))
 
   (init-status/set-complete!)
-  (log/info (trs "Metabase Initialization COMPLETE")))
+  (log/info (trs "Kenga Analytics Initialization COMPLETE")))
 
 ;;; -------------------------------------------------- Normal Start --------------------------------------------------
 
 (defn- start-normally []
-  (log/info (trs "Starting Metabase in STANDALONE mode"))
+  (log/info (trs "Starting Kenga Analytics in STANDALONE mode"))
   (try
     ;; launch embedded webserver async
     (server/start-web-server! handler/app)
@@ -125,7 +125,7 @@
     (when (config/config-bool :mb-jetty-join)
       (.join (server/instance)))
     (catch Throwable e
-      (log/error e (trs "Metabase Initialization FAILED"))
+      (log/error e (trs "Kenga Analytics Initialization FAILED"))
       (System/exit 1))))
 
 (defn- run-cmd [cmd args]
@@ -136,8 +136,8 @@
 ;;; ------------------------------------------------ App Entry Point -------------------------------------------------
 
 (defn -main
-  "Launch Metabase in standalone mode."
+  "Launch Kenga Analytics in standalone mode."
   [& [cmd & args]]
   (if cmd
     (run-cmd cmd args) ; run a command like `java -jar metabase.jar migrate release-locks` or `lein run migrate release-locks`
-    (start-normally))) ; with no command line args just start Metabase normally
+    (start-normally))) ; with no command line args just start Kenga Analytics normally

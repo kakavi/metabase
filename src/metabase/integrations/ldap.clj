@@ -70,7 +70,7 @@
 
 (defsetting ldap-group-mappings
   ;; Should be in the form: {"cn=Some Group,dc=...": [1, 2, 3]} where keys are LDAP group DNs and values are lists of MB groups IDs
-  (deferred-tru "JSON containing LDAP to Metabase group mappings.")
+  (deferred-tru "JSON containing LDAP to Kenga Analytics group mappings.")
   :type    :json
   :default {}
   :getter  (fn []
@@ -208,7 +208,7 @@
      (ldap/bind? conn dn password))))
 
 (defn fetch-or-create-user!
-  "Using the `user-info` (from `find-user`) get the corresponding Metabase user, creating it if necessary."
+  "Using the `user-info` (from `find-user`) get the corresponding Kenga Analytics user, creating it if necessary."
   [{:keys [first-name last-name email groups]}]
   (let [user (or (db/select-one [User :id :last_login] :email email)
                  (user/create-new-ldap-auth-user!

@@ -1,16 +1,16 @@
-# Running Metabase on Docker
+# Running Kenga Analytics on Docker
 
-Metabase provides an official Docker image via Dockerhub that can be used for deployments on any system that is running Docker.
+Kenga Analytics provides an official Docker image via Dockerhub that can be used for deployments on any system that is running Docker.
 
-If you're trying to upgrade your Metabase version on Docker, check out these [upgrading instructions](upgrading-metabase.md).
+If you're trying to upgrade your Kenga Analytics version on Docker, check out these [upgrading instructions](upgrading-metabase.md).
 
-### Launching Metabase on a new container
+### Launching Kenga Analytics on a new container
 
 Here's a quick one-liner to get you off the ground (please note, we recommend further configuration for production deployments below):
 
     docker run -d -p 3000:3000 --name metabase metabase/metabase
 
-This will launch a Metabase server on port 3000 by default.  You can use `docker logs -f metabase` to follow the rest of the initialization progress.  Once the Metabase startup completes you can access the app at [localhost:3000](http://localhost:3000)
+This will launch a Kenga Analytics server on port 3000 by default.  You can use `docker logs -f metabase` to follow the rest of the initialization progress.  Once the Metabase startup completes you can access the app at [localhost:3000](http://localhost:3000)
 
 Since Docker containers have their own ports and we just map them to the system ports as needed it's easy to move Metabase onto a different system port if you wish.  For example running Metabase on port 12345:
 

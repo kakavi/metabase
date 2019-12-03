@@ -91,7 +91,7 @@
   and return a map of addresses emails were sent to to the email subjects."
   [& {:keys [google-auth? accept-invite? password invitor]
       :or   {accept-invite? true}}]
-  (tu/with-temporary-setting-values [site-name "Metabase"]
+  (tu/with-temporary-setting-values [site-name "Kenga Analytics"]
     (email-test/with-fake-inbox
       (let [new-user-email      (tu/random-email)
             new-user-first-name (tu/random-name)
@@ -116,49 +116,49 @@
 
 ;; admin shouldn't get email saying user joined until they accept the invite (i.e., reset their password)
 (expect
-  {"<New User>" ["You're invited to join Metabase's Metabase"]}
+  {"<New User>" ["You're invited to join Kenga Analytics"]}
   (invite-user-accept-and-check-inboxes! :invitor default-invitor, :accept-invite? false))
 
 ;; admin should get an email when a new user joins...
 (expect
-  {"<New User>"             ["You're invited to join Metabase's Metabase"]
-   "crowberto@metabase.com" ["<New User> accepted their Metabase invite"]}
+  {"<New User>"             ["You're invited to join Kenga Analytics"]
+   "crowberto@metabase.com" ["<New User> accepted their Kenga Analytics invite"]}
   (invite-user-accept-and-check-inboxes! :invitor default-invitor))
 
 ;; ...including the site admin if it is set...
 (expect
-  {"<New User>"             ["You're invited to join Metabase's Metabase"]
-   "crowberto@metabase.com" ["<New User> accepted their Metabase invite"]
-   "cam@metabase.com"       ["<New User> accepted their Metabase invite"]}
+  {"<New User>"             ["You're invited to join Kenga Analytics"]
+   "crowberto@metabase.com" ["<New User> accepted their Kenga Analytics invite"]
+   "cam@metabase.com"       ["<New User> accepted their Kenga Analytics invite"]}
   (tu/with-temporary-setting-values [admin-email "cam@metabase.com"]
     (invite-user-accept-and-check-inboxes! :invitor default-invitor)))
 
 ;; ... but if that admin is inactive they shouldn't get an email
 (expect
-  {"<New User>"             ["You're invited to join Metabase's Metabase"]
-   "crowberto@metabase.com" ["<New User> accepted their Metabase invite"]}
+  {"<New User>"             ["You're invited to join Kenga Analytics"]
+   "crowberto@metabase.com" ["<New User> accepted their Kenga Analytics invite"]}
   (tt/with-temp User [inactive-admin {:is_superuser true, :is_active false}]
     (invite-user-accept-and-check-inboxes! :invitor (assoc inactive-admin :is_active false))))
 
 ;; for google auth, all admins should get an email...
 (expect
-  {"crowberto@metabase.com"        ["<New User> created a Metabase account"]
-   "some_other_admin@metabase.com" ["<New User> created a Metabase account"]}
+  {"crowberto@metabase.com"        ["<New User> created a Kenga Analytics account"]
+   "some_other_admin@metabase.com" ["<New User> created a Kenga Analytics account"]}
   (tt/with-temp User [_ {:is_superuser true, :email "some_other_admin@metabase.com"}]
     (invite-user-accept-and-check-inboxes! :google-auth? true)))
 
 ;; ...including the site admin if it is set...
 (expect
-  {"crowberto@metabase.com"        ["<New User> created a Metabase account"]
-   "some_other_admin@metabase.com" ["<New User> created a Metabase account"]
-   "cam@metabase.com"              ["<New User> created a Metabase account"]}
+  {"crowberto@metabase.com"        ["<New User> created a Kenga Analytics account"]
+   "some_other_admin@metabase.com" ["<New User> created a Kenga Analytics account"]
+   "cam@metabase.com"              ["<New User> created a Kenga Analytics account"]}
   (tu/with-temporary-setting-values [admin-email "cam@metabase.com"]
     (tt/with-temp User [_ {:is_superuser true, :email "some_other_admin@metabase.com"}]
       (invite-user-accept-and-check-inboxes! :google-auth? true))))
 
 ;; ...unless they are inactive
 (expect
-  {"crowberto@metabase.com" ["<New User> created a Metabase account"]}
+  {"crowberto@metabase.com" ["<New User> created a Kenga Analytics account"]}
   (tt/with-temp User [_ {:is_superuser true, :is_active false}]
     (invite-user-accept-and-check-inboxes! :google-auth? true)))
 

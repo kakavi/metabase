@@ -1,5 +1,5 @@
 (ns metabase.handler
-  "Top-level Metabase Ring handler."
+  "Top-level Kenga Analytics Ring handler."
   (:require [metabase
              [config :as config]
              [routes :as routes]]

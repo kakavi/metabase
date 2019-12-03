@@ -1,9 +1,9 @@
 (ns metabase.pulse.render.sparkline
-  (:require [metabase.pulse.render
+  (:require [metabase.mbql.util :as mbql.u]
+            [metabase.pulse.render
              [common :as common]
              [image-bundle :as image-bundle]
              [style :as style]]
-            [metabase.types :as types]
             [metabase.util
              [date :as du]
              [i18n :refer [tru]]])
@@ -58,9 +58,8 @@
         (throw (Exception. (tru "No appropriate image writer found!"))))
       (.toByteArray os))))
 
-;; TIMEZONE FIXME
 (defn- format-val-fn [timezone cols x-axis-rowfn]
-  (if (types/temporal-field? (x-axis-rowfn cols))
+  (if (mbql.u/datetime-field? (x-axis-rowfn cols))
     #(.getTime ^Date (du/->Timestamp % timezone))
     identity))
 

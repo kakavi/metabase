@@ -2,13 +2,13 @@
 
 **Some basics**
 
-- [An overview of Metabase](01-what-is-metabase.md)
+- [An overview of Kenga Analytics](01-what-is-metabase.md)
 - [The basics of databases](02-database-basics.md)
 
 **Exploring and asking questions**
 
-- [Basic exploration in Metabase](03-basic-exploration.md)
-- [Asking questions in Metabase](04-asking-questions.md)
+- [Basic exploration in Kenga Analytics](03-basic-exploration.md)
+- [Asking questions in Kenga Analytics](04-asking-questions.md)
 - [Using the notebook editor to ask custom questions](custom-questions.md)
 - [Using the SQL editor](writing-sql.md)
 - [How to visualize the answers to questions](05-visualizing-results.md)
@@ -29,4 +29,4 @@
 - [Getting automatic insights with X-rays](14-x-rays.md)
 - [Setting and getting alerts](15-alerts.md)
 
-Let's get started with an overview of [What Metabase does](01-what-is-metabase.md).
+Let's get started with an overview of [What Kenga Analytics does](01-what-is-metabase.md).

@@ -1,22 +1,22 @@
-## Exploring in Metabase
+## Exploring in Kenga Analytics
 
 #### See what your teammates have made
 
-As long as you're not the very first user in your team's Metabase, the easiest way to start exploring your data is by looking at dashboards, charts, and lists that your teammates have already created. The best place to start is by checking out any dashboards that might be pinned on your home page or in the collections you have access to.
+As long as you're not the very first user in your team's Kenga Analytics, the easiest way to start exploring your data is by looking at dashboards, charts, and lists that your teammates have already created. The best place to start is by checking out any dashboards that might be pinned on your home page or in the collections you have access to.
 
 #### Browse your data
 
-Alternatively, you can dive right in to exploring the data in Metabase by clicking on one of the databases at the bottom of the home page or clicking the "Browse data" button in the top nav bar, and then selecting a database and clicking on one of its tables to see it. You can also click on the bolt icon on any table to see an automatic exploration of its data. Give it a try!
+Alternatively, you can dive right in to exploring the data in Kenga Analytics by clicking on one of the databases at the bottom of the home page or clicking the "Browse data" button in the top nav bar, and then selecting a database and clicking on one of its tables to see it. You can also click on the bolt icon on any table to see an automatic exploration of its data. Give it a try!
 
 ![Browse data](./images/browse-data.png)
 
 #### Exploring collections
 
-Collections in Metabase are a lot like folders. They're where all your team's dashboards and charts are kept. To explore a collection just click on one in the "Our analytics" section of the home page, or click on `Browse all items` to see everything.
+Collections in Kenga Analytics are a lot like folders. They're where all your team's dashboards and charts are kept. To explore a collection just click on one in the "Our analytics" section of the home page, or click on `Browse all items` to see everything.
 
 ![A collection](./images/collection-detail.png)
 
-If your teammates are cool, they'll have pinned some important dashboards or questions within your collections; if so, those important or useful items will show up nice and large at the top of a collection. Any dashboards that are pinned in the top-level, "Our Analytics" collection will also show up on the Metabase homepage.
+If your teammates are cool, they'll have pinned some important dashboards or questions within your collections; if so, those important or useful items will show up nice and large at the top of a collection. Any dashboards that are pinned in the top-level, "Our Analytics" collection will also show up on the Kenga Analytics homepage.
 
 Collections also have a list of any other items that are saved within them, as well as a list of other collections that are saved inside the current one.
 
@@ -44,7 +44,7 @@ Lastly, clicking on the ID of an item in a table gives you the option to go to a
 
 #### Exploring saved questions
 
-In Metabase parlance, every chart on a dashboard is called a "question." Clicking on the title of a question on a dashboard will take you to a detail view of that question. You'll also end up at this detail view if you use one of the actions mentioned above.
+In Kenga Analytics parlance, every chart on a dashboard is called a "question." Clicking on the title of a question on a dashboard will take you to a detail view of that question. You'll also end up at this detail view if you use one of the actions mentioned above.
 
 When you're looking at the detail view of a question, you can use all the same actions mentioned above. You can also click on the headings of tables to see more options, like summing the values of a column, or filtering based on that column.
 

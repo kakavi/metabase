@@ -81,7 +81,7 @@ export function getComputedSettings(
   settingsDefs: SettingDefs,
   object: any,
   storedSettings: Settings,
-  extra?: ExtraProps = {},
+  extra?: ExtraProps,
 ) {
   const computedSettings = {};
   for (const settingId in settingsDefs) {
@@ -103,7 +103,7 @@ function getComputedSetting(
   settingId: SettingId,
   object: any,
   storedSettings: Settings,
-  extra?: ExtraProps = {},
+  extra?: ExtraProps,
 ): any {
   if (settingId in computedSettings) {
     return;
@@ -165,7 +165,7 @@ function getSettingWidget(
   computedSettings: Settings,
   object: any,
   onChangeSettings: (settings: Settings) => void,
-  extra?: ExtraProps = {},
+  extra?: ExtraProps,
 ): WidgetDef {
   const settingDef = settingDefs[settingId];
   const value = computedSettings[settingId];
@@ -213,7 +213,7 @@ export function getSettingsWidgets(
   computedSettings: Settings,
   object: any,
   onChangeSettings: (settings: Settings) => void,
-  extra?: ExtraProps = {},
+  extra?: ExtraProps,
 ) {
   return Object.keys(settingDefs)
     .map(settingId =>

@@ -66,7 +66,7 @@ RUN apk add --update bash ttf-dejavu fontconfig
 # add fixed cacerts
 COPY --from=builder /etc/ssl/certs/java/cacerts /opt/java/openjdk/lib/security/cacerts
 
-# add Metabase script and uberjar
+# add Kenga Analytics script and uberjar
 RUN mkdir -p bin target/uberjar
 COPY --from=builder /app/source/target/uberjar/metabase.jar /app/target/uberjar/
 COPY --from=builder /app/source/bin/start /app/bin/

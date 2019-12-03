@@ -1,21 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 import pure from "recompose/pure";
 import { t } from "ttag";
 import S from "./UsefulQuestions.css";
 import D from "metabase/reference/components/Detail.css";
+import L from "metabase/components/List.css";
 
 import QueryButton from "metabase/components/QueryButton";
 
 const UsefulQuestions = ({ questions }) => (
-  <div className={D.detail}>
+  <div className={cx(D.detail)}>
     <div className={D.detailBody}>
       <div className={D.detailTitle}>
         <span className={D.detailName}>{t`Potentially useful questions`}</span>
       </div>
       <div className={S.usefulQuestions}>
         {questions.map((question, index, questions) => (
-          <QueryButton key={index} {...question} />
+          <QueryButton
+            key={index}
+            className={cx("border-bottom", "pt1", "pb1")}
+            iconClass={L.icon}
+            {...question}
+          />
         ))}
       </div>
     </div>

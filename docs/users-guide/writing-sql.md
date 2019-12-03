@@ -6,7 +6,7 @@ If you ever need to ask questions that can't be expressed using the question bui
 
 SQL (pronounced "sequel") stands for Structured Query Language, and is a widely used standard for getting data from databases. We won't try to teach you all about SQL in this guide, but to learn more about it, check out this [SQL Tutorial](http://www.w3schools.com/sql/default.asp).
 
-Even if you don't understand SQL or how to use it, it's worthwhile to understand how works inside Metabase because sometimes other people will share SQL-based questions that might be useful to you.
+Even if you don't understand SQL or how to use it, it's worthwhile to understand how works inside Kenga Analytics because sometimes other people will share SQL-based questions that might be useful to you.
 
 ### Starting a new SQL query
 
