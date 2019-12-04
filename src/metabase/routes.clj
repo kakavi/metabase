@@ -39,7 +39,7 @@
 
 
 ;; Redirect naughty users who try to visit a page other than setup if setup is not yet complete
-(defroutes ^{:doc "Top-level ring routes for Metabase."} routes
+(defroutes ^{:doc "Top-level ring routes for Kenga Analytics."} routes
   ;; ^/$ -> index.html
   (GET "/" [] index/index)
   (GET "/favicon.ico" [] (resp/resource-response "frontend_client/favicon.ico"))
@@ -52,7 +52,7 @@
                        ;; if Metabase is not finished initializing, return a generic error message rather than
                        ;; something potentially confusing like "DB is not set up"
                        (if-not (init-status/complete?)
-                         {:status 503, :body "Metabase is still initializing. Please sit tight..."}
+                         {:status 503, :body "Kenga Analytics is still initializing. Please sit tight..."}
                          (apply api/routes args))))
   ;; ^/app/ -> static files under frontend_client/app
   (context "/app" []

@@ -4339,7 +4339,7 @@ databaseChangeLog:
             tableName: raw_table
 
 # The Quartz Task Scheduler can use a DB to 'cluster' tasks and make sure they are only ran by a single instance where
-# using a multi-instance Metabase setup.
+# using a multi-instance Kenga Analytics setup.
 
   - changeSet:
       id: 89
