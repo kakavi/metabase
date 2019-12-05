@@ -134,7 +134,7 @@ export default class ProfileLink extends Component {
                 <span className="text-bold">Kenga Analytics</span>{" "}
                 {t`is a Trademark of`} Kenga Analytics, Inc
               </span>
-              <span>{t`and is built with care in Uganda`}</span>
+              <span>{t`and is built with care in San Francisco, CA`}</span>
             </div>
           </Modal>
         ) : null}

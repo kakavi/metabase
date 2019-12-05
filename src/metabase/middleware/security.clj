@@ -71,7 +71,7 @@
                                  "https://accounts.google.com"]
                   :style-src    ["'self'"
                                  "'unsafe-inline'"]
-                  :font-src     ["'self'"
+                  :font-src     ["'self' data:"
                                  (when config/is-dev?
                                    "localhost:8080")]
                   :img-src      ["*"

@@ -79,11 +79,22 @@ const MetabaseSettings = {
 
   newVersionAvailable: function(settings) {
     let versionInfo = _.findWhere(settings, { key: "version-info" });
-    const currentVersion = MetabaseSettings.get("version").tag;
+    let currentVersion = "";
+    if(MetabaseSettings.get("version").tag) {
+      currentVersion = MetabaseSettings.get("version").tag;
+    }
+    else {
+      currentVersion = "v0.33.5.1"
+    }
 
     if (versionInfo) {
       versionInfo = versionInfo.value;
     }
+    else{
+      versionInfo = "v0.33.5.1"
+    }
+    console.log(versionInfo);
+    console.log(currentVersion);
 
     return (
       versionInfo &&

@@ -179,7 +179,7 @@ const MetabaseUtils = {
 
     const getComponents = x =>
       // v1.2.3-BETA1
-      x
+      x.toString()
         .toLowerCase()
         // v1.2.3-beta1
         .replace(/^v/, "")

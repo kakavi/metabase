@@ -8,13 +8,13 @@ import {
   useSharedAdminLogin,
   cleanup,
 } from "__support__/e2e";
-import { click, clickButton, setInputValue } from "__support__/enzyme";
+import {click, clickButton, setInputValue} from "__support__/enzyme";
 
-import { DashboardApi, PublicApi } from "metabase/services";
+import {DashboardApi, PublicApi} from "metabase/services";
 import * as Urls from "metabase/lib/urls";
-import { makeGetMergedParameterFieldValues } from "metabase/selectors/metadata";
-import { ADD_PARAM_VALUES } from "metabase/redux/metadata";
-import { mount } from "enzyme";
+import {makeGetMergedParameterFieldValues} from "metabase/selectors/metadata";
+import {ADD_PARAM_VALUES} from "metabase/redux/metadata";
+import {mount} from "enzyme";
 import {
   fetchDashboard,
   ADD_PARAMETER,
@@ -28,10 +28,10 @@ import {
 import Question from "metabase/entities/questions";
 import Search from "metabase/entities/search";
 import Revisions from "metabase/entities/revisions";
-
+import {updateSetting} from "metabase/admin/settings/settings";
 import EditBar from "metabase/components/EditBar";
 
-import { delay } from "metabase/lib/promise";
+import {delay} from "metabase/lib/promise";
 import DashboardHeader from "metabase/dashboard/components/DashboardHeader";
 import {
   ParameterOptionItem,
@@ -39,7 +39,7 @@ import {
 } from "metabase/dashboard/components/ParametersPopover";
 import ParameterWidget from "metabase/parameters/components/ParameterWidget";
 import ParameterValueWidget from "metabase/parameters/components/ParameterValueWidget";
-import { PredefinedRelativeDatePicker } from "metabase/parameters/components/widgets/DateRelativeWidget";
+import {PredefinedRelativeDatePicker} from "metabase/parameters/components/widgets/DateRelativeWidget";
 import HeaderModal from "metabase/components/HeaderModal";
 import DashboardHistoryModal from "metabase/dashboard/components/DashboardHistoryModal";
 
@@ -52,7 +52,7 @@ const mockPublicDashboardResponse = {
   description: "For testing parameter values",
   id: 40,
   parameters: [
-    { name: "Category", slug: "category", id: "598ab323", type: "category" },
+    {name: "Category", slug: "category", id: "598ab323", type: "category"},
   ],
   ordered_cards: [
     {
@@ -63,7 +63,7 @@ const mockPublicDashboardResponse = {
         name: "Orders over time",
         description: null,
         display: "line",
-        dataset_query: { type: "query" },
+        dataset_query: {type: "query"},
       },
       col: 0,
       id: 105,
@@ -132,7 +132,7 @@ describe("Dashboard", () => {
         const getMergedParameterFieldValues = makeGetMergedParameterFieldValues();
         const fieldValues = await getMergedParameterFieldValues(
           store.getState(),
-          { parameter: { field_ids: [21] } },
+          {parameter: {field_ids: [21]}},
         );
         expect(fieldValues).toEqual([
           ["Doohickey"],
@@ -162,7 +162,7 @@ describe("Dashboard", () => {
         "For seeing the usual response times, feedback topics, our response rate, how often customers are directed to our knowledge base instead of providing a customized response";
 
       // Create a dashboard programmatically
-      const dashboard = await DashboardApi.create({ name, description });
+      const dashboard = await DashboardApi.create({name, description});
       cleanup.dashboard(dashboard);
       dashboardId = dashboard.id;
 
@@ -357,6 +357,54 @@ describe("Dashboard", () => {
 
       await store.waitForActions([FETCH_DASHBOARD]);
       expect(app.find(".DashCard")).toHaveLength(1);
+    });
+    it("displays the correct embed snippets", async () => {
+      checkDashboardWasCreated();
+
+      const store = await createTestStore();
+      await store.dispatch(
+        updateSetting({key: "enable-embedding", value: true}),
+      );
+
+      await store.dispatch(
+        updateSetting({
+          key: "embedding-secret-key",
+          value:
+            "2547733eb6a2fc0ff405f43ca94433b90b8f49aa2c667c39d3c7ce8750fcf1af",
+        }),
+      );
+
+      const dashboardUrl = Urls.dashboard(dashboardId);
+      store.pushPath(dashboardUrl);
+      const app = mount(store.getAppContainer());
+      await store.waitForActions([FETCH_DASHBOARD]);
+      app.findByIcon("share").click();
+      app.findByText("Embed this dashboard in an application").click();
+      app.findByText("Code").click();
+      const [js, html] = app.find("TextEditor").map(n => n.prop("value"));
+      expect(js)
+        .toBe(`// you will need to install via 'npm install jsonwebtoken' or in your package.json
+var jwt = require("jsonwebtoken");
+var METABASE_SITE_URL = "http://localhost:4000";
+var METABASE_SECRET_KEY = "2547733eb6a2fc0ff405f43ca94433b90b8f49aa2c667c39d3c7ce8750fcf1af";
+var payload = {
+  resource: { dashboard: ${dashboardId} },
+  params: {},
+  exp: Math.round(Date.now() / 1000) + (10 * 60) // 10 minute expiration
+};
+var token = jwt.sign(payload, METABASE_SECRET_KEY);
+var iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#bordered=true&titled=true";`);
+      expect(html).toBe(`<iframe
+    src="{{iframeUrl}}"
+    frameborder="0"
+    width="800"
+    height="600"
+    allowtransparency
+></iframe>`);
+
+      await store.dispatch(
+        updateSetting({key: "enable-embedding", value: false}),
+      );
     });
   });
 });
