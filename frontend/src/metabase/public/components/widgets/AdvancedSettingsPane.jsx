@@ -93,7 +93,7 @@ const AdvancedSettingsPane = ({
             <h3>{parameter.name}</h3>
             <Select
               className="ml-auto bg-white"
-              value={embeddingParams[parameter.slug] || "disabled"}
+              value={embeddingParams[parameter.slug] || "enabled"}
               onChange={e =>
                 onChangeEmbeddingParameters({
                   ...embeddingParams,
